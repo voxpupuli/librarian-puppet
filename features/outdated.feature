@@ -30,7 +30,7 @@ Feature: cli/outdated
     """
     forge "http://forge.puppetlabs.com"
 
-    mod 'test', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/test'
+    mod 'test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
     """
     And a file named "Puppetfile.lock" with:
     """
@@ -40,7 +40,7 @@ Feature: cli/outdated
         puppetlabs/stdlib (3.1.0)
 
     GIT
-      remote: https://github.com/rodjek/librarian-puppet.git
+      remote: https://github.com/voxpupuli/librarian-puppet.git
       path: features/examples/test
       ref: master
       sha: 10fdf98190a7a22e479628b3616f17f48a857e81

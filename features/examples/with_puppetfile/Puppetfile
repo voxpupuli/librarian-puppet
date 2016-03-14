@@ -1,1 +1,1 @@
-mod 'librarian/test', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/test'
+mod 'librarian/test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
