@@ -20,7 +20,7 @@ module Librarian
           end
 
           def dependencies(version)
-            array = get_release(version).metadata[:dependencies].map{|d| [d['name'], d['version_requirement']]}
+            array = get_release(version).metadata[:dependencies].map{|d| [d[:name], d[:version_requirement]]}
             Hash[*array.flatten(1)]
           end
 
@@ -30,7 +30,7 @@ module Librarian
             else
               # should never get here as we use one repo object for each module (to be changed in the future)
               debug { "Looking up url for #{name}@#{version}" }
-              release = PuppetForge::Release.find("#{name}-#{version}")
+              release = PuppetForge::V3::Release.find("#{name}-#{version}")
             end
             "#{source}#{release.file_uri}"
           end
@@ -38,8 +38,11 @@ module Librarian
         private
 
           def get_module
-            @module ||= PuppetForge::Module.find(name)
-            raise(Error, "Unable to find module '#{name}' on #{source}") unless @module
+            begin
+              @module ||= PuppetForge::V3::Module.find(name)
+            rescue Faraday::ResourceNotFound => e
+              raise(Error, "Unable to find module '#{name}' on #{source}")
+            end
             @module
           end
 
