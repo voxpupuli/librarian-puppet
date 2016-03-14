@@ -22,7 +22,7 @@ Feature: cli/install
     forge "http://forge.puppetlabs.com"
 
     mod 'puppetlabs/stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => '4.6.0'
-    mod 'librarian/test', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/test'
+    mod 'librarian/test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
     """
     When I run `librarian-puppet install --verbose`
     Then the exit status should be 0

@@ -1,7 +1,7 @@
 Feature: cli/install/git
   Puppet librarian needs to install modules from git repositories
 
-  Scenario: Installing a module from git 
+  Scenario: Installing a module from git
     Given a file named "Puppetfile" with:
     """
     forge "http://forge.puppetlabs.com"
@@ -83,7 +83,7 @@ Feature: cli/install/git
   Scenario: Install a module with dependencies specified in a Puppetfile
     Given a file named "Puppetfile" with:
     """
-    mod 'librarian/with_puppetfile', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/with_puppetfile'
+    mod 'librarian/with_puppetfile', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/with_puppetfile'
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0
@@ -93,7 +93,7 @@ Feature: cli/install/git
   Scenario: Install a module with dependencies specified in a Puppetfile and Modulefile
     Given a file named "Puppetfile" with:
     """
-    mod 'librarian/with_puppetfile', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/with_puppetfile_and_modulefile'
+    mod 'librarian/with_puppetfile', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/with_puppetfile_and_modulefile'
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0
@@ -103,7 +103,7 @@ Feature: cli/install/git
   Scenario: Install a module with dependencies specified in a Puppetfile and metadata.json
     Given a file named "Puppetfile" with:
     """
-    mod 'librarian/with_puppetfile', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/with_puppetfile_and_metadata_json'
+    mod 'librarian/with_puppetfile', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/with_puppetfile_and_metadata_json'
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0
@@ -133,7 +133,7 @@ Feature: cli/install/git
   Scenario: Install a module using modulefile syntax
     Given a file named "Puppetfile" with:
     """
-    mod 'librarian/modulefile_syntax', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/modulefile_syntax'
+    mod 'librarian/modulefile_syntax', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/modulefile_syntax'
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0
@@ -143,7 +143,7 @@ Feature: cli/install/git
   Scenario: Install a module using metadata syntax
     Given a file named "Puppetfile" with:
     """
-    mod 'librarian/metadata_syntax', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/metadata_syntax'
+    mod 'librarian/metadata_syntax', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/metadata_syntax'
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0
@@ -155,7 +155,7 @@ Feature: cli/install/git
     """
     forge "http://forge.puppetlabs.com"
 
-    mod 'librarian-test', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/test'
+    mod 'librarian-test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0
@@ -167,7 +167,7 @@ Feature: cli/install/git
     """
     forge "http://forge.puppetlabs.com"
 
-    mod 'test', :git => 'https://github.com/rodjek/librarian-puppet.git', :path => 'features/examples/dependency_without_version'
+    mod 'test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/dependency_without_version'
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0

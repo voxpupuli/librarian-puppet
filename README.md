@@ -1,6 +1,6 @@
 # Librarian-puppet
 
-[![Build Status](https://travis-ci.org/rodjek/librarian-puppet.png?branch=master)](https://travis-ci.org/rodjek/librarian-puppet)
+[![Build Status](https://travis-ci.org/voxpupuli/librarian-puppet.png?branch=master)](https://travis-ci.org/voxpupuli/librarian-puppet)
 
 ## Introduction
 
@@ -321,5 +321,5 @@ Please include:
 
 
 ## License
-Please see the [LICENSE](https://github.com/rodjek/librarian-puppet/blob/master/LICENSE)
+Please see the [LICENSE](https://github.com/voxpupuli/librarian-puppet/blob/master/LICENSE)
 file.
