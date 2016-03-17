@@ -2,6 +2,11 @@
 
 ## From 2.x Librarian-Puppet requires Ruby >= 1.9, uses Puppet Forge API v3. For Ruby 1.8 use 1.x
 
+### 2.2.2
+
+ * [Issue #1](https://github.com/voxpupuli/librarian-puppet/pull/1) Upgrade to puppet_forge 2
+ * [Issue #2](https://github.com/voxpupuli/librarian-puppet/pull/2) Change github user from "rodjek" to "voxpupuli"
+
 ### 2.2.1
 
  * [Issue #311](https://github.com/rodjek/librarian-puppet/issues/311) Omit versions with a deleted_at date
