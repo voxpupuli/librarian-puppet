@@ -129,6 +129,11 @@ This includes any branch name, tag name, SHA, or SHA unique prefix. If we use a
 branch, we can later ask Librarian-puppet to update the module by fetching the
 most recent version of the module from that same branch.
 
+Note that Librarian-puppet recognizes the [r10k Puppetfile's](https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd) additional
+options, `:tag`, `:commit`, and `:branch`, but only as aliases for `:ref`.
+That is, there is no implementation of r10k's optimizations around fetching
+these different types of git objects.
+
 The Git source also supports a `:path =>` option. If we use the path option,
 Librarian-puppet will navigate down into the Git repository and only use the
 specified subdirectory. Some people have the habit of having a single repository
