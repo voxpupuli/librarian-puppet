@@ -25,4 +25,8 @@ describe 'Librarian::Puppet::Action::Resolve' do
     end
 
   end
+
+  after do
+    File.delete('features/examples/test/Puppetfile.lock')
+  end
 end
