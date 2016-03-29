@@ -59,3 +59,10 @@ matrix:
       env: PUPPET_VERSION="~> 3.6.0"
     - rvm: '2.2'
       env: PUPPET_VERSION="~> 3.7.0"
+
+deploy:
+  provider: rubygems
+  api_key:
+    secure: Tx61MuXUinawXsHjbeTTF4iR0I6rRfOhQEhWKkd1qWBgw4MZaQHu2SrTb1In9qlAY/PToTdAT+q9OaWABzE+BFr9enfQwC34o+DfumD7fa2Dhkp73JiUYWmB575eH+emyeA0XgccbW3nd5IAK0xL8Rnt82bIl5ZFc+O3FH6uRWd0G2cyYPkPxlrKTARK+gRmS4onF8k1oCglI9tbiAtbi0uzSe18k1l2jLM4QphAbGKxKL5n66sFjRgqaIJk6UH7u1W5h1cEyXy9bIJyXAUSg9/M+R2tfiDX0t4MaqhBMNkfXrsxa+4RzbfwCM+28hlM+/bO/eYm7ZkBSKZ/DEToEGrwqHDd22pTcHJsn5bh+dyhhg0Q1+7XliOcAVUe01VLrD5zM6jfLc4R7ZDDe6CTtYFidQsos0BeLsrb+Rfws+/ygoiOQDohyShD2L1AXpR+Lr1gsNbHGElzo3n1RCvCIp8/Dep8oHYpY0Puz6AciV5acshH6eAhy4bCBrcG+rk4Ii/1jRhaHGfQyjXhW/oLvUgtyayMjadmWVgB9DYbBgPbE18qWMOvQkHzJScqWQxBCjOAi2G5jieu9d7bqIbXuz3H07KxjCt19fyR3jh+sNhGr3EM0TKn5fycdqr/eAKx9bUuiyW/FENRjpFB4Eh0RySPVsWn2aX7zHs8qSKLsVg=
+  on:
+    tags: true
