@@ -3,7 +3,7 @@ sudo: false
 env:
   global:
     - FOO=hello
-    - BAR=world
+    - secure: ZJkQnhKQal3LvuKX+9RjJH1RJXP+z4pn0xFWv7moBYF9RwttizVEWfXJqhuqr5r2RBTvoVampieGzECUwy8SD0gC1OuWyMHBkmV/trB94WBSKijCkvTq2mxpMm/OGaIfnFrF0Lm+fvRDpDyzaG63qEDk3L8iWdpd3EccxxbsKrTZiycydTcfTd5M88Vw2Ra7jWfi87rK8D8nPVVCbhiKnyOd5FHns/08BtkU4ZkKTCYPJlQ6CfoCW2nJTE3GwryAWa3qooqttepy7nN2l2Oj8gf/wxMbO0gBuUBAox4YlfwoCxSQcp3AgITupdDYvmFn6XpX+Pcyx3tqAaz5XkKl2iEEBxiUEkmsZA6GGaAvlNxfIc+MzlAvSkhI2XoC+2Vc+pV8BARAw0ZiQ6ueC79Ec7SorSg1CTlxIE+m31ZP3A/vCc3U9+GPnDeiHfeNHLbuQsgyQsSGGbJQkG/fh12CcS0VTVTAXkhbS+81Ge94b6iyyLUVwEFO47xUSEVumI5tAGuCS937WfSTZgCWdKVBH0WldIs3sISsu0LtzF0gjy8IT5HUCOlSSCSIBQdweTbRan4/zsd30cDlC5gwAanJ6DM409WWXX3hFbYJ1I236oUJ7dsREo2v+7PNDtl23T6cHrW/HGeGCBvekmmfT2wAmHaPFxjT3Gra2l9PpZi2PsU=
 
 script:
   - echo "FOO = ${FOO}"
