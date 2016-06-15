@@ -26,7 +26,21 @@ module Librarian
       # If the rsync configuration parameter is set, use rsync instead of FileUtils
       def cp_r(src, dest)
         if rsync?
-          Rsync.run(File.join(src, "/"), dest, ['-avz', '--delete'])
+          if Gem.win_platform?
+            src_clean = "#{src}".gsub(/^([a-z])\:/i,'/cygdrive/\1')
+            dest_clean = "#{dest}".gsub(/^([a-z])\:/i,'/cygdrive/\1')
+          else
+            src_clean = src
+            dest_clean = dest
+          end
+          debug { "Copying #{src_clean}/ to #{dest_clean}/ with rsync -avz --delete" }
+          result = Rsync.run(File.join(src_clean, "/"), File.join(dest_clean, "/"), ['-avz', '--delete'])
+          if result.success?
+            debug { "Rsync from #{src_clean}/ to #{dest_clean}/ successfull" }
+          else
+            msg = "Failed to rsync from #{src_clean}/ to #{dest_clean}/: " + result.error
+            raise Error, msg
+          end
         else
           begin
             FileUtils.cp_r(src, dest, :preserve => true)
