@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../lib/librarian/puppet/action/resolve'
+require File.join(File.dirname(__FILE__),'../../lib/librarian/puppet/action/resolve')
 require 'librarian/ui'
 require 'thor'
 

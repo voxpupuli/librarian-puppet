@@ -32,10 +32,16 @@ Gem::Specification.new do |s|
 
   # only needed for ruby 1.8
   s.add_dependency "json"
+  if RUBY_VERSION.to_f < 1.9
+    s.add_development_dependency "rake", '< 11'
+    s.add_development_dependency "cucumber", '~> 1.3.20'
+    ENV['PUPPET_VERSION'] ||= '3.8.7'
+  else
+    s.add_development_dependency "rake"
+    s.add_development_dependency "cucumber"
+  end
 
-  s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
-  s.add_development_dependency "cucumber"
   s.add_development_dependency "aruba"
   s.add_development_dependency "puppet", ENV["PUPPET_VERSION"]
   s.add_development_dependency "minitest", "~> 5"
