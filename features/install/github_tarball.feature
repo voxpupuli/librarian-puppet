@@ -5,7 +5,7 @@ Feature: cli/install/github_tarball
   Scenario: Installing a module from github tarballs
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'puppetlabs/apache', '0.6.0', :github_tarball => 'puppetlabs/puppetlabs-apache'
     mod 'puppetlabs/stdlib', '2.3.0', :github_tarball => 'puppetlabs/puppetlabs-stdlib'

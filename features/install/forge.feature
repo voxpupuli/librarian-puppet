@@ -54,7 +54,7 @@ Feature: cli/install/forge
   Scenario: Installing an exact version of a module
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'puppetlabs/apt', '0.0.4'
     """
@@ -71,7 +71,7 @@ Feature: cli/install/forge
   Scenario: Installing a module in a path with spaces
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
     mod 'puppetlabs/stdlib', '4.1.0'
     """
     When PENDING I run `librarian-puppet install`
@@ -81,7 +81,7 @@ Feature: cli/install/forge
   Scenario: Installing a module with invalid versions in the forge
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'puppetlabs/apache', '0.4.0'
     mod 'puppetlabs/postgresql', '2.0.1'
@@ -97,7 +97,7 @@ Feature: cli/install/forge
   Scenario: Installing a module with several constraints
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'puppetlabs/apt', '>=1.0.0', '<1.0.1'
     """
@@ -111,7 +111,7 @@ Feature: cli/install/forge
     Given a directory named "puppet"
     And a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'puppetlabs/ntp', '3.0.3'
     """
@@ -125,7 +125,7 @@ Feature: cli/install/forge
   Scenario: Handle range version numbers
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'puppetlabs/postgresql', '3.2.0'
     mod 'puppetlabs/apt', '< 1.4.1' # 1.4.2 causes trouble in travis
@@ -137,7 +137,7 @@ Feature: cli/install/forge
 
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'puppetlabs/postgresql', :git => 'git://github.com/puppetlabs/puppet-postgresql', :ref => '3.3.0'
     """
@@ -149,7 +149,7 @@ Feature: cli/install/forge
   Scenario: Installing a module that does not exist
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'puppetlabs/xxxxx'
     """
@@ -163,7 +163,7 @@ Feature: cli/install/forge
   Scenario: Install a module with conflicts
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'puppetlabs/apache', '0.6.0'
     mod 'puppetlabs/stdlib', '<2.2.1'
@@ -175,7 +175,7 @@ Feature: cli/install/forge
   Scenario: Install a module from the Forge with dependencies without version
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'sbadia/gitlab', '0.1.0'
     """
@@ -186,7 +186,7 @@ Feature: cli/install/forge
   Scenario: Source dependencies from Modulefile
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     modulefile
     """
@@ -202,7 +202,7 @@ Feature: cli/install/forge
   Scenario: Source dependencies from metadata.json
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     metadata
     """
@@ -225,7 +225,7 @@ Feature: cli/install/forge
   Scenario: Source dependencies from Modulefile using dash instead of slash
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     modulefile
     """
@@ -241,7 +241,7 @@ Feature: cli/install/forge
   Scenario: Installing a module with duplicated dependencies
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'pdxcat/collectd', '2.1.0'
     """
@@ -253,7 +253,7 @@ Feature: cli/install/forge
   Scenario: Installing two modules with same name, alphabetical order wins
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forge.puppet.com"
 
     mod 'ripienaar-concat', '0.2.0'
     mod 'puppetlabs-concat', '1.2.0'
