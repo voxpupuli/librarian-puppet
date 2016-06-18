@@ -7,7 +7,7 @@ module Librarian
   module Puppet
     class Dsl < Librarian::Dsl
 
-      FORGE_URL = "http://forge.puppetlabs.com"
+      FORGE_URL = "https://forge.puppet.com"
 
       dependency :mod
 
