@@ -38,20 +38,6 @@ module Librarian
             new(environment, uri, options)
           end
 
-          def client_api_version()
-            version = 1
-            pe_version = Librarian::Puppet.puppet_version.match(/\(Puppet Enterprise (.+)\)/)
-
-            # Puppet 3.6.0+ uses api v3
-            if Librarian::Puppet::puppet_gem_version >= Gem::Version.create('3.6.0.a')
-              version = 3
-            # Puppet enterprise 3.2.0+ uses api v3
-            elsif pe_version and Gem::Version.create(pe_version[1].strip) >= Gem::Version.create('3.2.0')
-              version = 3
-            end
-            return version
-          end
-
         end
 
         attr_accessor :environment
@@ -60,11 +46,6 @@ module Librarian
 
         def initialize(environment, uri, options = {})
           self.environment = environment
-
-          if uri =~ %r{^http(s)?://forge\.puppetlabs\.com}
-            uri = "https://forgeapi.puppetlabs.com"
-            warn { "Replacing Puppet Forge API URL to use v3 #{uri}. You should update your Puppetfile" }
-          end
 
           @uri = URI::parse(uri)
           @cache_path = nil
@@ -158,8 +139,18 @@ module Librarian
           @repo ||= {}
 
           unless @repo[name]
-            # if we are using the official Forge then use API v3, otherwise stick to v1 for now
-            if uri.hostname =~ /\.puppetlabs\.com$/ || !environment.use_v1_api
+            use_version_3 = true
+            # Use v3 of the api unless the url is the old one or v1 is explicitly set
+            if uri.hostname =~ /forge\.puppetlabs\.com$/ || environment.use_v1_api
+              use_version_3 = false
+            end
+
+            #Override the above if they have specified the forgeapi (v3) endpoint
+            if uri.hostname =~ /forgeapi\.puppetlabs\.com$/
+              use_version_3 = true
+            end
+
+            if use_version_3
               @repo[name] = RepoV3.new(self, name)
             else
               @repo[name] = RepoV1.new(self, name)

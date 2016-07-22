@@ -26,9 +26,12 @@ module Librarian
             api_version_data(name, version)['dependencies']
           end
 
-          def url(name, version)
+          def download(name, version)
             info = api_version_data(name, version)
-            "#{source}#{info[name].first['file']}"
+            url = "#{source}#{info[name].first['file']}"
+
+            debug { "Downloading #{release.download_url} into #{path}"}
+            download_file(url, path)
           end
 
         private
