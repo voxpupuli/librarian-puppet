@@ -24,7 +24,7 @@ module Librarian
             Hash[*array.flatten(1)]
           end
 
-          def url(name, version)
+          def download(name, version, path)
             if name == "#{get_module().owner.username}/#{get_module().name}"
               release = get_release(version)
             else
@@ -32,7 +32,8 @@ module Librarian
               debug { "Looking up url for #{name}@#{version}" }
               release = PuppetForge::V3::Release.find("#{name}-#{version}")
             end
-            "#{source}#{release.file_uri}"
+            debug { "Downloading #{release.download_url} into #{path}"}
+            release.download(Pathname.new(path))
           end
 
         private

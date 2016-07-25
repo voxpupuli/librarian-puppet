@@ -71,6 +71,22 @@ module Librarian
         name.rpartition('-').last
       end
 
+      def download_file(url, path)
+        File.open(path, 'wb') do |f|
+          begin
+            debug { "Downloading <#{url}> to <#{f.path}>" }
+            open(url,
+                 "User-Agent" => "librarian-puppet v#{Librarian::Puppet::VERSION}") do |res|
+              while buffer = res.read(8192)
+                f.write(buffer)
+              end
+            end
+          rescue OpenURI::HTTPError => e
+            raise e, "Error requesting <#{url}>: #{e.to_s}"
+          end
+        end
+      end
+
       # deprecated
       alias :organization_name :module_name
     end
