@@ -11,10 +11,10 @@ module Librarian
           def initialize(source, name)
             super(source, name)
             # API returned data for this module including all versions and dependencies, indexed by module name
-            # from http://forge.puppetlabs.com/api/v1/releases.json?module=#{name}
+            # from https://forge.puppet.com/api/v1/releases.json?module=#{name}
             @api_data = nil
             # API returned data for this module and a specific version, indexed by version
-            # from http://forge.puppetlabs.com/api/v1/releases.json?module=#{name}&version=#{version}
+            # from https://forge.puppet.com/api/v1/releases.json?module=#{name}&version=#{version}
             @api_version_data = {}
           end
 
