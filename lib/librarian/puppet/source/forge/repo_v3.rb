@@ -11,7 +11,7 @@ module Librarian
           PuppetForge.user_agent = "librarian-puppet/#{Librarian::Puppet::VERSION}"
 
           def initialize(source, name)
-            PuppetForge.host = source.uri.clone
+            PuppetForge.host = source.uri.clone.to_s
             super(source, name)
           end
 
