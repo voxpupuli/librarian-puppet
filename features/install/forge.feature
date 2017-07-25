@@ -193,11 +193,11 @@ Feature: cli/install/forge
     And a file named "Modulefile" with:
     """
     name "random name"
-    dependency "puppetlabs/postgresql", "2.4.1"
+    dependency "puppetlabs/postgresql", "4.0.0"
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0
-    And the file "modules/postgresql/Modulefile" should match /name *'puppetlabs-postgresql'/
+    And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
 
   Scenario: Source dependencies from metadata.json
     Given a file named "Puppetfile" with:
@@ -213,14 +213,14 @@ Feature: cli/install/forge
       "dependencies": [
         {
           "name": "puppetlabs/postgresql",
-          "version_requirement": "2.4.1"
+          "version_requirement": "4.0.0"
         }
       ]
     }
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0
-    And the file "modules/postgresql/Modulefile" should match /name *'puppetlabs-postgresql'/
+    And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
 
   Scenario: Source dependencies from Modulefile using dash instead of slash
     Given a file named "Puppetfile" with:
@@ -232,11 +232,11 @@ Feature: cli/install/forge
     And a file named "Modulefile" with:
     """
     name "random name"
-    dependency "puppetlabs-postgresql", "2.4.1"
+    dependency "puppetlabs-postgresql", "4.0.0"
     """
     When I run `librarian-puppet install`
     Then the exit status should be 0
-    And the file "modules/postgresql/Modulefile" should match /name *'puppetlabs-postgresql'/
+    And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
 
   Scenario: Installing a module with duplicated dependencies
     Given a file named "Puppetfile" with:
@@ -255,13 +255,13 @@ Feature: cli/install/forge
     """
     forge "http://forge.puppetlabs.com"
 
-    mod 'ripienaar-concat', '0.2.0'
-    mod 'puppetlabs-concat', '1.2.0'
+    mod 'theforeman-dhcp', '4.0.0'
+    mod 'puppet-dhcp', '2.0.0'
     """
     When I run `librarian-puppet install --verbose`
     Then the exit status should be 0
-    And the file "modules/concat/metadata.json" should match /"name": "ripienaar-concat"/
-    And the output should contain "Dependency on module 'concat' is fullfilled by multiple modules and only one will be used"
+    And the file "modules/dhcp/metadata.json" should match /"name": "theforeman-dhcp"/
+    And the output should contain "Dependency on module 'dhcp' is fullfilled by multiple modules and only one will be used"
 
   @other-forge
   Scenario: Installing from another forge with local reference should not try to download anything from the official forge
