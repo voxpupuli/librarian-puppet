@@ -4,7 +4,7 @@ Feature: cli/install/git
   Scenario: Installing a module from git
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forgeapi.puppetlabs.com"
 
     mod 'puppetlabs/apache',
         :git => 'https://github.com/puppetlabs/puppetlabs-apache.git', :ref => '1.4.0'
@@ -34,7 +34,7 @@ Feature: cli/install/git
   Scenario: Installing a module with invalid versions in git
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forgeapi.puppetlabs.com"
 
     mod "apache",
       :git => "https://github.com/puppetlabs/puppetlabs-apache.git", :ref => "1.4.0"
@@ -47,7 +47,7 @@ Feature: cli/install/git
   Scenario: Switching a module from forge to git
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forgeapi.puppetlabs.com"
 
     mod 'puppetlabs/postgresql', '4.0.0'
     """
@@ -58,7 +58,7 @@ Feature: cli/install/git
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
     When I overwrite "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forgeapi.puppetlabs.com"
 
     mod 'puppetlabs/postgresql',
       :git => 'https://github.com/puppetlabs/puppetlabs-postgresql.git', :ref => '4.3.0'
@@ -113,7 +113,7 @@ Feature: cli/install/git
   Scenario: Running install with no Modulefile nor metadata.json
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forgeapi.puppetlabs.com"
 
     mod 'puppetlabs/stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => '4.6.0'
     """
@@ -123,7 +123,7 @@ Feature: cli/install/git
   Scenario: Running install with metadata.json without dependencies
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forgeapi.puppetlabs.com"
 
     mod 'puppetlabs/sqlite', :git => 'https://github.com/puppetlabs/puppetlabs-sqlite.git', :ref => '84a0a6'
     """
@@ -153,7 +153,7 @@ Feature: cli/install/git
   Scenario: Install a module from git and using path
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forgeapi.puppetlabs.com"
 
     mod 'librarian-test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
     """
@@ -165,7 +165,7 @@ Feature: cli/install/git
   Scenario: Install a module from git without version
     Given a file named "Puppetfile" with:
     """
-    forge "http://forge.puppetlabs.com"
+    forge "https://forgeapi.puppetlabs.com"
 
     mod 'test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/dependency_without_version'
     """

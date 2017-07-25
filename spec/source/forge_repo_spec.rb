@@ -4,7 +4,7 @@ require "librarian/puppet/environment"
 describe Librarian::Puppet::Source::Forge::Repo do
 
   let(:environment) { Librarian::Puppet::Environment.new }
-  let(:uri) { "https://forge.puppetlabs.com" }
+  let(:uri) { "https://forgeapi.puppetlabs.com" }
   let(:source) { Librarian::Puppet::Source::Forge.new(environment, uri) }
   subject { Librarian::Puppet::Source::Forge::Repo.new(source, "puppetlabs/stdlib") }
 
