@@ -6,11 +6,11 @@
 
 Librarian-puppet is a bundler for your puppet infrastructure.  You can use
 librarian-puppet to manage the puppet modules your infrastructure depends on,
-whether the modules come from the [Puppet Forge](https://forge.puppetlabs.com/),
+whether the modules come from the [Puppet Forge](https://forge.puppet.com/),
 Git repositories or just a path.
 
 * Librarian-puppet can reuse the dependencies listed in your `Modulefile` or `metadata.json`
-* Forge modules can be installed from [Puppetlabs Forge](https://forge.puppetlabs.com/) or an internal Forge such as [Pulp](http://www.pulpproject.org/)
+* Forge modules can be installed from [Puppetlabs Forge](https://forge.puppet.com/) or an internal Forge such as [Pulp](http://www.pulpproject.org/)
 * Git modules can be installed from a branch, tag or specific commit, optionally using a path inside the repository
 * Modules can be installed from GitHub using tarballs, without needing Git installed
 * Modules can be installed from a filesystem path

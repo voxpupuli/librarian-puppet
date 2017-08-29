@@ -87,7 +87,7 @@ module Librarian
             target = vendored?(name, version) ? vendored_path(name, version).to_s : name
 
             # can't pass the default v3 forge url (http://forgeapi.puppetlabs.com)
-            # to clients that use the v1 API (https://forge.puppetlabs.com)
+            # to clients that use the v1 API (https://forge.puppet.com)
             # nor the other way around
             module_repository = source.to_s
 
