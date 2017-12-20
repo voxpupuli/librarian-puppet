@@ -158,7 +158,8 @@ module Librarian
           @repo ||= {}
 
           unless @repo[name]
-            # if we are using the official Forge then use API v3, otherwise stick to v1 for now
+            # If we are using the official Forge then use API v3, otherwise use the preferred api 
+            # as defined by the CLI option use_v1_api
             if uri.hostname =~ /\.puppetlabs\.com$/ || !environment.use_v1_api
               @repo[name] = RepoV3.new(self, name)
             else
