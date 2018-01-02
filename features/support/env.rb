@@ -15,7 +15,7 @@ Given /^PENDING/ do
 end
 
 Given(/^there is no Puppetfile$/) do
-  in_current_dir do
+  in_current_directory do
     fail "Puppetfile exists at #{File.expand_path('Puppetfile')}" if (File.exist?('Puppetfile'))
   end
 end
