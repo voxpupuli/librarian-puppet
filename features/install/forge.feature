@@ -85,9 +85,11 @@ Feature: cli/install/forge
 
     mod 'puppetlabs/apache', '0.4.0'
     mod 'puppetlabs/postgresql', '2.0.1'
+    mod 'puppetlabs-firewall', '<= 1.9.0' # apache has an unqualified dependency on firewall, which in turn pulls in a too-new version of stdlib
     mod 'puppetlabs/apt', '< 1.4.1' # 1.4.2 causes trouble in travis
+
     """
-    When I run `librarian-puppet install`
+    When I run `librarian-puppet install --verbose`
     Then the exit status should be 0
     And the file "modules/apache/Modulefile" should match /name *'puppetlabs-apache'/
     And the file "modules/apache/Modulefile" should match /version *'0\.4\.0'/
