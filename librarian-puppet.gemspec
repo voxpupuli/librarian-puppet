@@ -15,8 +15,7 @@ Gem::Specification.new do |s|
   automatically pulling in modules from the forge and git repositories with
   a single command.'
 
-  # puppet_forge gem requires ruby 1.9 so we do too, use version 1.x in ruby 1.8
-  s.required_ruby_version = '>= 1.9.0'
+  s.required_ruby_version = '>= 2.0.0'
 
   s.files = [
     '.gitignore',

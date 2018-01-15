@@ -1,6 +1,22 @@
 # Changelog
 
-## From 2.x Librarian-Puppet requires Ruby >= 1.9, uses Puppet Forge API v3. For Ruby 1.8 use 1.x
+### Breaking Changes
+
+Librarian-Puppet 3.0.0 and newer requires Ruby >= 2.0. Use version 2.2.4 if you need support for Puppet 3.7 or earlier, or Ruby 1.9 or earlier. Note that Puppet 4.10 and [newer require Ruby 2.1](https://puppet.com/docs/puppet/4.10/system_requirements.html#prerequisites) or newer.
+
+Librarian-Puppet 2.0.0 and newer requires Ruby >= 1.9 and uses Puppet Forge API v3. For Ruby 1.8 use 1.5.0.
+
+### 3.0.0
+
+ * [PR #1](https://github.com/voxpupuli/librarian/pull/1) Add support for r10k Puppetfile's opts
+ * [PR #5](https://github.com/voxpupuli/librarian-puppet/pull/9) Update README for r10k syntax from PR #1.
+ * [PR #8](https://github.com/voxpupuli/librarian-puppet/pull/8) Clean up tests
+ * [PR #19](https://github.com/voxpupuli/librarian-puppet/pull/19) Fix rsync on Windows (path conversion, return code checking) and add trailing /
+ * [Issue #20](https://github.com/voxpupuli/librarian-puppet/issues/20) Ignore Gem files
+ * [Issue #25](https://github.com/voxpupuli/librarian-puppet/pull/25) Move to https and new forge url
+ * Avoid deleted ripienaar-concat
+ * [PR #59](https://github.com/voxpupuli/librarian-puppet/pull/59) Fix tests
+ * [PR #61](https://github.com/voxpupuli/librarian-puppet/pull/61) Bring testing matrix up to date
 
 ### 2.2.3
 
@@ -26,7 +42,7 @@
 
  * Update librarian to use the new `exclusion` syntax
  * [Issue #282](https://github.com/rodjek/librarian-puppet/issues/282) Merge duplicated dependencies and warn the user, no more `Cannot bounce Puppetfile.lock!` errors
- * [Issue #217](https://github.com/rodjek/librarian-puppet/issues/217)[Issue #244](https://github.com/rodjek/librarian-puppet/issues/244) Use librarianp 0.4.0 that no longer uses recursion to avoid `stack level too deep` errors
+ * [Issue #217](https://github.com/rodjek/librarian-puppet/issues/217), [Issue #244](https://github.com/rodjek/librarian-puppet/issues/244) Use librarianp 0.4.0 that no longer uses recursion to avoid `stack level too deep` errors
  * [Issue #277](https://github.com/rodjek/librarian-puppet/issues/277) Warn when there are two dependencies with the same module name
  * Use `librarianp` gem instead of `librarian`, a fork with the needed improvements and fixes.
 
@@ -48,7 +64,7 @@
 
  * Update librarian to use the new `exclusion` syntax
  * [Issue #282](https://github.com/rodjek/librarian-puppet/issues/282) Merge duplicated dependencies and warn the user, no more `Cannot bounce Puppetfile.lock!` errors
- * [Issue #217](https://github.com/rodjek/librarian-puppet/issues/217)[Issue #244](https://github.com/rodjek/librarian-puppet/issues/244) Use librarianp 0.4.0 that no longer uses recursion to avoid `stack level too deep` errors
+ * [Issue #217](https://github.com/rodjek/librarian-puppet/issues/217), [Issue #244](https://github.com/rodjek/librarian-puppet/issues/244) Use librarianp 0.4.0 that no longer uses recursion to avoid `stack level too deep` errors
  * [Issue #277](https://github.com/rodjek/librarian-puppet/issues/277) Warn when there are two dependencies with the same module name
  * Use `librarianp` gem instead of `librarian`, a fork with the needed improvements and fixes.
 
