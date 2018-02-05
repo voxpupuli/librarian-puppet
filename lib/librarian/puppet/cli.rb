@@ -47,6 +47,7 @@ module Librarian
       option "destructive", :type => :boolean, :default => false
       option "local", :type => :boolean, :default => false
       option "use-v1-api", :type => :boolean, :default => true
+      option "use-short-cache-path", :type => :boolean, :default => false
       def install
 
         ensure!
@@ -64,6 +65,7 @@ module Librarian
 
         environment.config_db.local['use-v1-api'] = options['use-v1-api'] ? '1' : nil
         environment.config_db.local['mode'] = options['local'] ? 'local' : nil
+        environment.config_db.local['use-short-cache-path'] = options['use-short-cache-path'] ? '1' : nil
 
         resolve!
         debug { "Install: dependencies resolved"}
