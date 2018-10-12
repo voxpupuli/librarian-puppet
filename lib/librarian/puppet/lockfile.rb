@@ -28,6 +28,20 @@ module Librarian
           super(lines, manifests_index)
         end
 
+        def compile(sources_ast)
+          manifests = compile_placeholder_manifests(sources_ast)
+          manifests = manifests.map do |name, manifest|
+            dependencies = manifest.dependencies.map do |d|
+              environment.dsl_class.dependency_type.new(d.name, d.requirement, manifests[d.name].source)
+            end
+            real = Manifest.new(manifest.source, manifest.name)
+            real.version = manifest.version
+            real.dependencies = manifest.dependencies
+            real
+          end
+          manifests.sort_by(&:name)
+        end
+
       end
 
       def load(string)

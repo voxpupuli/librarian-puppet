@@ -1,4 +1,5 @@
 require 'librarian/action/resolve'
+require 'librarian/puppet/resolver'
 
 module Librarian
   module Puppet
@@ -13,6 +14,10 @@ module Librarian
           dupes.each do |k,v|
             warn("Dependency on module '#{k}' is fullfilled by multiple modules and only one will be used: #{v.map{|m|m.name}}")
           end
+        end
+
+        def resolver
+          Resolver.new(environment, cyclic: true)
         end
 
       end

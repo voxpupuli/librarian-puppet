@@ -20,6 +20,10 @@ module Librarian
           # don't fail if Puppetfile doesn't exist as we'll use the Modulefile or metadata.json
         end
 
+        def sorted_manifests
+          lock.manifests
+        end
+
       end
     end
   end
