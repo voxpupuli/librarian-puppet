@@ -37,6 +37,37 @@ module Librarian
         Receiver.new(target)
       end
 
+      def run(specfile = nil, sources = [])
+        specfile, sources = nil, specfile if specfile.kind_of?(Array) && sources.empty?
+
+        Target.new(self).tap do |target|
+          target.precache_sources(sources)
+          debug_named_source_cache("Pre-Cached Sources", target)
+
+          specfile ||= Proc.new if block_given?
+
+          if specfile.kind_of?(Pathname) and !File.exists?(specfile)
+            debug { "Specfile #{specfile} not found, using defaults" } unless specfile.nil?
+            receiver(target).run(specfile, &default_specfile)
+          else
+            receiver(target).run(specfile)
+          end
+
+          post_process_target(target)
+
+          debug_named_source_cache("Post-Cached Sources", target)
+        end.to_spec
+      end
+
+      class Target < Librarian::Dsl::Target
+        def dependency(name, *args)
+          options = args.last.is_a?(Hash) ? args.pop : {}
+          source = source_from_options(options) || @source
+          dep = dependency_type.new(name, args, source, 'Puppetfile')
+          @dependencies << dep
+        end
+      end
+
       class Receiver < Librarian::Dsl::Receiver
         attr_reader :specfile, :working_path
 

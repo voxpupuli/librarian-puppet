@@ -25,7 +25,46 @@ module Librarian
             alias_method :old_lookup, :[]
             define_method(:[]) { |k| self.old_lookup(normalize_name(k)) }
           end
-          super(lines, manifests_index)
+          dependencies = []
+          while lines.first =~ /^ {2}([\w\-\/]+)(?: \((.*)\))?$/
+            lines.shift
+            name, requirement = $1, $2.split(/,\s*/)
+            dependencies << environment.dsl_class.dependency_type.new(name, requirement, manifests_index[name].source, 'lockfile')
+          end
+          dependencies
+        end
+
+        def compile_placeholder_manifests(sources_ast)
+          manifests = {}
+          sources_ast.each do |source_ast|
+            source_type = source_ast[:type]
+            source = source_type.from_lock_options(environment, source_ast[:options])
+            source_ast[:manifests].each do |manifest_name, manifest_ast|
+              manifests[manifest_name] = ManifestPlaceholder.new(
+                  source,
+                  manifest_name,
+                  manifest_ast[:version],
+                  manifest_ast[:dependencies].map do |k, v|
+                    environment.dsl_class.dependency_type.new(k, v, nil, manifest_name)
+                  end
+              )
+            end
+          end
+          manifests
+        end
+
+        def compile(sources_ast)
+          manifests = compile_placeholder_manifests(sources_ast)
+          manifests = manifests.map do |name, manifest|
+            dependencies = manifest.dependencies.map do |d|
+              environment.dsl_class.dependency_type.new(d.name, d.requirement, manifests[d.name].source, name)
+            end
+            real = Manifest.new(manifest.source, manifest.name)
+            real.version = manifest.version
+            real.dependencies = manifest.dependencies
+            real
+          end
+          ManifestSet.sort(manifests)
         end
 
       end
