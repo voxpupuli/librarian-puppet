@@ -89,7 +89,7 @@ module Librarian
             # can't pass the default v3 forge url (http://forgeapi.puppetlabs.com)
             # to clients that use the v1 API (https://forge.puppet.com)
             # nor the other way around
-            module_repository = source.to_s
+            module_repository = source.uri.to_s
 
             if Forge.client_api_version() > 1 and module_repository =~ %r{^http(s)?://forge\.puppetlabs\.com}
               module_repository = "https://forgeapi.puppetlabs.com"
@@ -109,7 +109,7 @@ module Librarian
 
             command = %W{puppet module install --version #{version} --target-dir}
             command.push(*[path.to_s, "--module_repository", module_repository, "--modulepath", path.to_s, "--module_working_dir", path.to_s, "--ignore-dependencies", target])
-            debug { "Executing puppet module install for #{name} #{version}: #{command.join(" ")}" }
+            debug { "Executing puppet module install for #{name} #{version}: #{command.join(" ").gsub(module_repository, source.to_s)}" }
 
             begin
               Librarian::Posix.run!(command)
