@@ -44,7 +44,7 @@ module Librarian
 
           parsed_metadata['dependencies'].each do |d|
             gem_requirement = Librarian::Dependency::Requirement.new(d['version_requirement']).to_gem_requirement
-            new_dependency = Dependency.new(d['name'], gem_requirement, forge_source)
+            new_dependency = Dependency.new(d['name'], gem_requirement, forge_source, name)
             dependencies << new_dependency
           end
 
