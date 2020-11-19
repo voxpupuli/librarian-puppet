@@ -1,4 +1,7 @@
 sudo: false
+arch:
+  - AMD64
+  - ppc64le
 rvm:
   - '2.4'
   - '2.3'
