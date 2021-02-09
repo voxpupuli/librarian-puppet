@@ -145,7 +145,7 @@ module Librarian
             debug { "Downloading #{url} into #{path}"}
             environment.vendor!
             File.open(path, 'wb') do |f|
-              open(url, "rb") do |input|
+              URI.open(url, 'rb') do |input|
                 f.write(input.read)
               end
             end
