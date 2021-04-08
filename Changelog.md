@@ -6,6 +6,11 @@ Librarian-Puppet 3.0.0 and newer requires Ruby >= 2.0. Use version 2.2.4 if you 
 
 Librarian-Puppet 2.0.0 and newer requires Ruby >= 1.9 and uses Puppet Forge API v3. For Ruby 1.8 use 1.5.0.
 
+### 3.0.1
+
+ * [PR #68](https://github.com/voxpupuli/librarian-puppet/pull/68) Specify dependent module in dependencies
+ * [PR #80](https://github.com/voxpupuli/librarian-puppet/pull/80) Fix calling issue with open-uri
+
 ### 3.0.0
 
  * [PR #1](https://github.com/voxpupuli/librarian/pull/1) Add support for r10k Puppetfile's opts
