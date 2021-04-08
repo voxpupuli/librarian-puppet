@@ -2,9 +2,7 @@ sudo: false
 rvm:
   - '2.4'
   - '2.3'
-  - '2.2'
-  - '2.1'
-  - '2.0'
+
 notifications:
   email:
     - tim@github.com
@@ -13,18 +11,6 @@ env:
   - PUPPET_VERSION="~> 5.2.0"
   - PUPPET_VERSION="~> 5.1.0"
   - PUPPET_VERSION="~> 5.0.0"
-
-matrix:
-  exclude:
-    # Newer Puppet versions do not support old Ruby versions
-    - rvm: '2.0'
-      env: PUPPET_VERSION="~> 5.0.0"
-    - rvm: '2.0'
-      env: PUPPET_VERSION="~> 5.1.0"
-    - rvm: '2.0'
-      env: PUPPET_VERSION="~> 5.2.0"
-    - rvm: '2.0'
-      env: PUPPET_VERSION="~> 5.3.0"
 
 before_script:
   - puppet --version
