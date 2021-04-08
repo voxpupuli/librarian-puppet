@@ -77,7 +77,7 @@ module Librarian
             File.open(vendored_path(vendored_name(name), version).to_s, 'wb') do |f|
               begin
                 debug { "Downloading <#{url}> to <#{f.path}>" }
-                open(url,
+                URI.open(url,
                   "User-Agent" => "librarian-puppet v#{Librarian::Puppet::VERSION}") do |res|
                   while buffer = res.read(8192)
                     f.write(buffer)

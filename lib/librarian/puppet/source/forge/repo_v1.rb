@@ -74,7 +74,7 @@ module Librarian
             debug { "Querying Forge API for module #{name}#{" and version #{version}" unless version.nil?}: #{url}" }
 
             begin
-              data = open(url) {|f| f.read}
+              data = URI.open(url) {|f| f.read}
               JSON.parse(data)
             rescue OpenURI::HTTPError => e
               case e.io.status[0].to_i
