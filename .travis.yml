@@ -13,27 +13,10 @@ env:
   - PUPPET_VERSION="~> 5.2.0"
   - PUPPET_VERSION="~> 5.1.0"
   - PUPPET_VERSION="~> 5.0.0"
-  - PUPPET_VERSION="~> 4.10.0"
-  - PUPPET_VERSION="~> 4.9.0"
-  - PUPPET_VERSION="~> 4.8.0"
-  - PUPPET_VERSION="~> 3.8.0"
 
 matrix:
   exclude:
-    # monkeypatches failing for Puppet 3.8 on Ruby 2.1 through 2.4
-    - rvm: '2.4'
-      env: PUPPET_VERSION="~> 3.8.0"
-    - rvm: '2.3'
-      env: PUPPET_VERSION="~> 3.8.0"
-    - rvm: '2.2'
-      env: PUPPET_VERSION="~> 3.8.0"
     # Newer Puppet versions do not support old Ruby versions
-    - rvm: '2.0'
-      env: PUPPET_VERSION="~> 4.8.0"
-    - rvm: '2.0'
-      env: PUPPET_VERSION="~> 4.9.0"
-    - rvm: '2.0'
-      env: PUPPET_VERSION="~> 4.10.0"
     - rvm: '2.0'
       env: PUPPET_VERSION="~> 5.0.0"
     - rvm: '2.0'
