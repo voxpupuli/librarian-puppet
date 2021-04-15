@@ -5,8 +5,7 @@ rvm:
   - '2.3'
 
 notifications:
-  email:
-    - tim@github.com
+  email: false
 env:
   - PUPPET_VERSION="~> 5.3.0"
   - PUPPET_VERSION="~> 5.2.0"
