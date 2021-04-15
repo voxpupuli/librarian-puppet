@@ -7,11 +7,19 @@ rvm:
 notifications:
   email: false
 env:
+  - PUPPET_VERSION="~> 6.0"
+  - PUPPET_VERSION="~> 7.0"
   - PUPPET_VERSION="~> 5.3.0"
   - PUPPET_VERSION="~> 5.2.0"
   - PUPPET_VERSION="~> 5.1.0"
   - PUPPET_VERSION="~> 5.0.0"
-  - PUPPET_VERSION="~> 6.0"
+
+matrix:
+  exclude:
+    - rvm: '2.4'
+      env: PUPPET_VERSION="~> 7.0"
+    - rvm: '2.3'
+      env: PUPPET_VERSION="~> 7.0"
 
 before_script:
   - puppet --version
