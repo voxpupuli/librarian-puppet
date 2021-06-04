@@ -91,7 +91,7 @@ module Librarian
         end
 
         def to_lock_options
-          {:remote => clean_uri(uri).to_s}
+          {:remote => uri.to_s}
         end
 
         def pinned?
