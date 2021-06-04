@@ -70,9 +70,16 @@ module Librarian
         install!
       end
 
-      # only used to replace / to - in the module names
+      desc "update", "Updates and installs the dependencies you specify."
+      option "verbose", :type => :boolean, :default => false
+      option "line-numbers", :type => :boolean, :default => false
+      option "use-v1-api", :type => :boolean, :default => true
       def update(*names)
+
+        environment.config_db.local['use-v1-api'] = options['use-v1-api'] ? '1' : nil
+
         warn("Usage of module/name is deprecated, use module-name") if names.any? {|n| n.include?("/")}
+        # replace / to - in the module names
         super(*names.map{|n| normalize_name(n)})
       end
 
