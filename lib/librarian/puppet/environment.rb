@@ -57,6 +57,10 @@ module Librarian
       def use_v1_api
         config_db['use-v1-api']
       end
+
+      def use_short_cache_path
+        config_db['use-short-cache-path']
+      end
     end
   end
 end

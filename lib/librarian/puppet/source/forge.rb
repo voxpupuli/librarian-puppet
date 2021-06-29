@@ -123,7 +123,14 @@ module Librarian
 
         def cache_path
           @cache_path ||= begin
-            dir = "#{uri.host}#{uri.path}".gsub(/[^0-9a-z\-_]/i, '_')
+            if environment.use_short_cache_path
+              # To shorten the cache path to avoid #17
+              # take only the first 7 digits of the SHA1 checksum of the forge URI
+              # (short Git commit hash approach)
+              dir = Digest::SHA1.hexdigest("#{uri.host}#{uri.path}")[0..6]
+            else
+              dir = "#{uri.host}#{uri.path}".gsub(/[^0-9a-z\-_]/i, '_')
+            end
             environment.cache_path.join("source/puppet/forge/#{dir}")
           end
         end
