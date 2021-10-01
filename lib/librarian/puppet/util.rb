@@ -36,7 +36,7 @@ module Librarian
           debug { "Copying #{src_clean}/ to #{dest_clean}/ with rsync -avz --delete" }
           result = Rsync.run(File.join(src_clean, "/"), File.join(dest_clean, "/"), ['-avz', '--delete'])
           if result.success?
-            debug { "Rsync from #{src_clean}/ to #{dest_clean}/ successfull" }
+            debug { "Rsync from #{src_clean}/ to #{dest_clean}/ successful" }
           else
             msg = "Failed to rsync from #{src_clean}/ to #{dest_clean}/: " + result.error
             raise Error, msg
