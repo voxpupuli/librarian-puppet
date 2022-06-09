@@ -75,26 +75,6 @@ Feature: cli/install
     Then the exit status should be 0
     And the file "modules/concat/metadata.json" should match /"name": "puppetlabs-concat"/
 
-  @puppet2 @puppet3
-  Scenario: Install a module with Modulefile without version
-    Given a file named "Puppetfile" with:
-    """
-    forge "https://forgeapi.puppetlabs.com"
-
-    mod 'librarian-bad_modulefile', :path => 'bad_modulefile'
-    """
-    And a directory named "bad_modulefile/manifests"
-    And a file named "bad_modulefile/Modulefile" with:
-    """
-    # bad Modulefile
-    """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
-    And the output should match:
-    """
-    Unable to parse .*/bad_modulefile/Modulefile, ignoring: Missing version
-    """
-
   Scenario: Install a module with the rsync configuration using the --clean flag
     Given a file named "Puppetfile" with:
     """

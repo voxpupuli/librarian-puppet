@@ -78,28 +78,11 @@ module Librarian
           super
         end
 
-        # implement the 'modulefile' syntax for Puppetfile
-        def modulefile
-          f = modulefile_path
-          raise Error, "Modulefile file does not exist: #{f}" unless File.exist?(f)
-          File.read(f).lines.each do |line|
-            regexp = /\s*dependency\s+('|")([^'"]+)\1\s*(?:,\s*('|")([^'"]+)\3)?/
-            regexp =~ line && mod($2, $4)
-          end
-        end
-
         # implement the 'metadata' syntax for Puppetfile
         def metadata
           f = working_path.join('metadata.json')
           unless File.exist?(f)
-            msg = "Metadata file does not exist: #{f}"
-            # try modulefile, in case we don't have a Puppetfile and we are using the default template
-            if File.exist?(modulefile_path)
-              modulefile
-              return
-            else
-              raise Error, msg
-            end
+            raise Error, "Metadata file does not exist: #{f}"
           end
           begin
             json = JSON.parse(File.read(f))
@@ -110,12 +93,6 @@ module Librarian
           dependencyList.each do |d|
             mod(d['name'], d['version_requirement'])
           end
-        end
-
-        private
-
-        def modulefile_path
-          working_path.join('Modulefile')
         end
       end
     end
