@@ -9,9 +9,7 @@ CLEAN.include('pkg/', 'tmp/')
 CLOBBER.include('Gemfile.lock')
 
 RSpec::Core::RakeTask.new
-Cucumber::Rake::Task.new(:features) do |t|
-  t.cucumber_opts = ['--tags "not @puppet2"']
-end
+Cucumber::Rake::Task.new(:features)
 
 Rake::TestTask.new do |test|
   test.pattern = 'test/**/*_test.rb'

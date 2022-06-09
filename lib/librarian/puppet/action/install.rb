@@ -17,7 +17,7 @@ module Librarian
         end
 
         def check_specfile
-          # don't fail if Puppetfile doesn't exist as we'll use the Modulefile or metadata.json
+          # don't fail if Puppetfile doesn't exist as we'll use metadata.json
         end
 
       end

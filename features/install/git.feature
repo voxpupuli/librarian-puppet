@@ -84,16 +84,6 @@ Feature: cli/install/git
     And the file "modules/with_puppetfile/metadata.json" should match /"name": "librarian-with_puppetfile"/
     And the file "modules/test/metadata.json" should match /"name": "librarian-test"/
 
-  Scenario: Install a module with dependencies specified in a Puppetfile and Modulefile
-    Given a file named "Puppetfile" with:
-    """
-    mod 'librarian/with_puppetfile', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/with_puppetfile_and_modulefile'
-    """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
-    And the file "modules/with_puppetfile/Modulefile" should match /name *'librarian-with_puppetfile_and_modulefile'/
-    And the file "modules/test/Modulefile" should match /name *'maestrodev-test'/
-
   Scenario: Install a module with dependencies specified in a Puppetfile and metadata.json
     Given a file named "Puppetfile" with:
     """
@@ -103,7 +93,7 @@ Feature: cli/install/git
     And the file "modules/with_puppetfile/metadata.json" should match /"name": "librarian-with_puppetfile_and_metadata_json"/
     And the file "modules/test/metadata.json" should match /"name": "maestrodev-test"/
 
-  Scenario: Running install with no Modulefile nor metadata.json
+  Scenario: Running install without metadata.json
     Given a file named "Puppetfile" with:
     """
     forge "https://forgeapi.puppetlabs.com"
@@ -120,16 +110,6 @@ Feature: cli/install/git
     mod 'puppetlabs/sqlite', :git => 'https://github.com/puppetlabs/puppetlabs-sqlite.git', :ref => '84a0a6'
     """
     When I successfully run `librarian-puppet install`
-
-  Scenario: Install a module using modulefile syntax
-    Given a file named "Puppetfile" with:
-    """
-    mod 'librarian/modulefile_syntax', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/modulefile_syntax'
-    """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
-    And the file "modules/modulefile_syntax/Modulefile" should match /name *'librarian-modulefile_syntax'/
-    And the file "modules/test/Modulefile" should match /name *'maestrodev-test'/
 
   Scenario: Install a module using metadata syntax
     Given a file named "Puppetfile" with:
