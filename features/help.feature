@@ -5,6 +5,5 @@ Feature: displays help if no subcommand is passed
   And a useful help screen should be displayed
 
   Scenario: App defaults to help subcommand
-    When I run `librarian-puppet`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet`
     And the output should contain "librarian-puppet version"

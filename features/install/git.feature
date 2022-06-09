@@ -12,8 +12,7 @@ Feature: cli/install/git
     mod 'puppetlabs/stdlib',
         :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => '4.6.0'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/apache/metadata.json" should match /"name": "puppetlabs-apache"/
     And the file "modules/apache/metadata.json" should match /"version": "1\.4\.0"/
     And the git revision of module "apache" should be "e4ec6d4985fdb23e26c809e0d5786823d0689f90"
@@ -27,8 +26,7 @@ Feature: cli/install/git
     """
     mod 'puppetlabs/stdlib', '4.6.0', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => '4.6.0'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
 
   Scenario: Installing a module with invalid versions in git
@@ -39,8 +37,7 @@ Feature: cli/install/git
     mod "apache",
       :git => "https://github.com/puppetlabs/puppetlabs-apache.git", :ref => "1.4.0"
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/apache/metadata.json" should match /"name": "puppetlabs-apache"/
     And the file "modules/apache/metadata.json" should match /"version": "1\.4\.0"/
 
@@ -51,8 +48,7 @@ Feature: cli/install/git
 
     mod 'puppetlabs/postgresql', '4.0.0'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
     And the file "modules/postgresql/metadata.json" should match /"version": "4\.0\.0"/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
@@ -75,8 +71,7 @@ Feature: cli/install/git
     """
     mod 'puppetlabs-apt', :git => 'https://github.com/puppetlabs/puppetlabs-apt.git', :ref => '1.5.2'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
     And the file "modules/apt/metadata.json" should match /"name": "puppetlabs-apt"/
 
@@ -85,8 +80,7 @@ Feature: cli/install/git
     """
     mod 'librarian/with_puppetfile', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/with_puppetfile'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/with_puppetfile/metadata.json" should match /"name": "librarian-with_puppetfile"/
     And the file "modules/test/metadata.json" should match /"name": "librarian-test"/
 
@@ -105,8 +99,7 @@ Feature: cli/install/git
     """
     mod 'librarian/with_puppetfile', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/with_puppetfile_and_metadata_json'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/with_puppetfile/metadata.json" should match /"name": "librarian-with_puppetfile_and_metadata_json"/
     And the file "modules/test/metadata.json" should match /"name": "maestrodev-test"/
 
@@ -117,8 +110,7 @@ Feature: cli/install/git
 
     mod 'puppetlabs/stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => '4.6.0'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
 
   Scenario: Running install with metadata.json without dependencies
     Given a file named "Puppetfile" with:
@@ -127,8 +119,7 @@ Feature: cli/install/git
 
     mod 'puppetlabs/sqlite', :git => 'https://github.com/puppetlabs/puppetlabs-sqlite.git', :ref => '84a0a6'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
 
   Scenario: Install a module using modulefile syntax
     Given a file named "Puppetfile" with:
@@ -145,8 +136,7 @@ Feature: cli/install/git
     """
     mod 'librarian/metadata_syntax', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/metadata_syntax'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/metadata_syntax/metadata.json" should match /"name": "librarian-metadata_syntax"/
     And the file "modules/test/metadata.json" should match /"name": "maestrodev-test"/
 
@@ -157,8 +147,7 @@ Feature: cli/install/git
 
     mod 'librarian-test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/test/metadata.json" should match /"version": "0\.0\.1"/
     And a file named "modules/stdlib/metadata.json" should exist
 
@@ -169,8 +158,7 @@ Feature: cli/install/git
 
     mod 'test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/dependency_without_version'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/test/metadata.json" should match /"version": "0\.0\.1"/
     And a file named "modules/stdlib/metadata.json" should exist
 
@@ -179,8 +167,7 @@ Feature: cli/install/git
     """
     mod 'duritong/munin', :git => 'https://github.com/duritong/puppet-munin.git', :ref => '0bb71e'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/munin/Modulefile" should match /name *'duritong-munin'/
     And the file "modules/concat/metadata.json" should match /"name": *"puppetlabs-concat"/
     And a file named "modules/stdlib/metadata.json" should exist
@@ -194,6 +181,5 @@ Feature: cli/install/git
     mod 'puppetlabs-stdlib',
       :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the output should contain "Dependency 'puppetlabs-stdlib' duplicated for module, merging"

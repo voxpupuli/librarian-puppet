@@ -24,8 +24,7 @@ Feature: cli/install
     mod 'puppetlabs/stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => '4.6.0'
     mod 'librarian/test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
     """
-    When I run `librarian-puppet install --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install --verbose`
     And the file "modules/stdlib/metadata.json" should match /"version": "4\.6\.0"/
     And the output should not match /Executing puppet module install for puppetlabs.stdlib/
 
@@ -49,8 +48,7 @@ Feature: cli/install
       ]
     }
     """
-    When I run `librarian-puppet install --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install --verbose`
     And the file "modules/stdlib/metadata.json" should match /"version": "4\.6\.0"/
     And the output should not match /Executing puppet module install for puppetlabs.stdlib/
 
@@ -62,8 +60,7 @@ Feature: cli/install
     mod 'librarian-duplicated_dependencies', :path => '../../features/examples/duplicated_dependencies'
     exclusion 'ripienaar-concat'
     """
-    When I run `librarian-puppet install --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install --verbose`
     And the file "modules/concat/metadata.json" should match /"name": "puppetlabs-concat"/
     And the output should contain "Excluding dependency ripienaar-concat from"
 
@@ -110,15 +107,12 @@ Feature: cli/install
     ---
     LIBRARIAN_PUPPET_RSYNC: 'true'
     """
-    When I run `librarian-puppet config`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet config`
     And the output should contain "rsync: true"
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And a directory named "modules/test" should exist
     And the file "modules/test" should have an inode and ctime
-    When I run `librarian-puppet install --clean`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install --clean`
     And a directory named "modules/test" should exist
     And the file "modules/test" should not have the same inode or ctime as before
 
@@ -134,16 +128,13 @@ Feature: cli/install
     ---
     LIBRARIAN_PUPPET_RSYNC: 'true'
     """
-    When I run `librarian-puppet config`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet config`
     And the output should contain "rsync: true"
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And a directory named "modules/test" should exist
     And the file "modules/test" should have an inode and ctime
     Given I wait for 1 second
-    When I run `librarian-puppet install --destructive`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install --destructive`
     And a directory named "modules/test" should exist
     And the file "modules/test" should not have the same inode or ctime as before
 
@@ -159,15 +150,12 @@ Feature: cli/install
     ---
     LIBRARIAN_PUPPET_RSYNC: 'true'
     """
-    When I run `librarian-puppet config`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet config`
     And the output should contain "rsync: true"
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And a directory named "modules/test" should exist
     And the file "modules/test" should have an inode and ctime
     Given I wait for 1 second
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And a directory named "modules/test" should exist
     And the file "modules/test" should have the same inode and ctime as before

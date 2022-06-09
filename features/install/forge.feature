@@ -8,8 +8,7 @@ Feature: cli/install/forge
 
     mod 'puppetlabs/ntp'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/ntp/metadata.json" should match /"name": "puppetlabs-ntp"/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
 
@@ -27,8 +26,7 @@ Feature: cli/install/forge
       ]
     }
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
 
   Scenario: Running install with no Puppetfile and Modulefile
@@ -58,8 +56,7 @@ Feature: cli/install/forge
 
     mod 'puppetlabs/apt', '0.0.4'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/apt/Modulefile" should match /name *'puppetlabs-apt'/
     And the file "modules/apt/Modulefile" should match /version *'0\.0\.4'/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
@@ -89,8 +86,7 @@ Feature: cli/install/forge
     mod 'puppetlabs/apt', '< 1.4.1' # 1.4.2 causes trouble in travis
 
     """
-    When I run `librarian-puppet install --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install --verbose`
     And the file "modules/apache/Modulefile" should match /name *'puppetlabs-apache'/
     And the file "modules/apache/Modulefile" should match /version *'0\.4\.0'/
     And the file "modules/postgresql/Modulefile" should match /name *'puppetlabs-postgresql'/
@@ -103,8 +99,7 @@ Feature: cli/install/forge
 
     mod 'puppetlabs/apt', '>=1.0.0', '<1.0.1'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/apt/Modulefile" should match /name *'puppetlabs-apt'/
     And the file "modules/apt/Modulefile" should match /version *'1\.0\.0'/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
@@ -132,8 +127,7 @@ Feature: cli/install/forge
     mod 'puppetlabs/postgresql', '3.2.0'
     mod 'puppetlabs/apt', '< 1.4.1' # 1.4.2 causes trouble in travis
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/postgresql/Modulefile" should match /name 'puppetlabs-postgresql'/
     And the file "modules/postgresql/Modulefile" should match /version '3\.2\.0'/
 
@@ -143,8 +137,7 @@ Feature: cli/install/forge
 
     mod 'puppetlabs/postgresql', :git => 'git://github.com/puppetlabs/puppet-postgresql', :ref => '3.3.0'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/postgresql/Modulefile" should match /name 'puppetlabs-postgresql'/
     And the file "modules/postgresql/Modulefile" should match /version '3\.3\.0'/
 
@@ -181,8 +174,7 @@ Feature: cli/install/forge
 
     mod 'sbadia/gitlab', '0.1.0'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/gitlab/Modulefile" should match /version *'0\.1\.0'/
 
   Scenario: Source dependencies from Modulefile
@@ -220,8 +212,7 @@ Feature: cli/install/forge
       ]
     }
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
 
   Scenario: Source dependencies from Modulefile using dash instead of slash
@@ -247,8 +238,7 @@ Feature: cli/install/forge
 
     mod 'pdxcat/collectd', '2.1.0'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/collectd/Modulefile" should match /name *'pdxcat-collectd'/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
 
@@ -260,8 +250,7 @@ Feature: cli/install/forge
     mod 'theforeman-dhcp', '4.0.0'
     mod 'puppet-dhcp', '2.0.0'
     """
-    When I run `librarian-puppet install --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install --verbose`
     And the file "modules/dhcp/metadata.json" should match /"name": "theforeman-dhcp"/
     And the output should contain "Dependency on module 'dhcp' is fullfilled by multiple modules and only one will be used"
 

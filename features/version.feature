@@ -1,6 +1,5 @@
 Feature: cli/version
 
   Scenario: Getting the version
-    When I run `librarian-puppet version`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet version`
     And the output should contain "librarian-"

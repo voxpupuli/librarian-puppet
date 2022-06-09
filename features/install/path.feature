@@ -6,8 +6,7 @@ Feature: cli/install/path
     """
     mod 'librarian/with_puppetfile', :path => '../../features/examples/with_puppetfile'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/with_puppetfile/metadata.json" should match /"name": "librarian-with_puppetfile"/
     And the file "modules/test/metadata.json" should match /"name": "librarian-test"/
 
@@ -16,8 +15,7 @@ Feature: cli/install/path
     """
     mod 'librarian/path_dependencies', :path => '../../features/examples/path_dependencies'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/path_dependencies/metadata.json" should match /"name": "librarian-path_dependencies"/
     And the file "modules/test/metadata.json" should match /"name": "librarian-test"/
     And a file named "modules/stdlib/metadata.json" should exist
@@ -37,8 +35,7 @@ Feature: cli/install/path
     """
     mod 'librarian/with_puppetfile', :path => '../../features/examples/with_puppetfile_and_metadata_json'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/with_puppetfile/metadata.json" should match /"name": "librarian-with_puppetfile_and_metadata_json"/
     And the file "modules/test/metadata.json" should match /"name": "maestrodev-test"/
 
@@ -49,8 +46,7 @@ Feature: cli/install/path
 
     mod 'test', :path => '../../features/examples/dependency_without_version'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/test/metadata.json" should match /"version": "0\.0\.1"/
     And a file named "modules/stdlib/metadata.json" should exist
 
@@ -61,6 +57,5 @@ Feature: cli/install/path
     mod 'librarian/test', :path => '../../features/examples/test'
     mod 'puppetlabs/stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/test/metadata.json" should match /"name": "librarian-test"/

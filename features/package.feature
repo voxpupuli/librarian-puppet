@@ -9,8 +9,7 @@ Feature: cli/package
     mod 'puppetlabs/apt', '1.4.0'
     mod 'puppetlabs/stdlib', '4.1.0'
     """
-    When I run `librarian-puppet package --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet package --verbose`
     And the file "modules/apt/Modulefile" should match /name *'puppetlabs-apt'/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
     And the following files should exist:
@@ -25,8 +24,7 @@ Feature: cli/package
     mod 'puppetlabs/apt', '1.5.0', :git => 'https://github.com/puppetlabs/puppetlabs-apt.git', :ref => '1.5.0'
     mod 'puppetlabs/stdlib', '4.1.0'
     """
-    When I run `librarian-puppet package --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet package --verbose`
     And the file "modules/apt/Modulefile" should match /name *'puppetlabs-apt'/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
     And the following files should exist:
@@ -42,8 +40,7 @@ Feature: cli/package
     mod 'puppetlabs/apt', '1.4.0', :github_tarball => 'puppetlabs/puppetlabs-apt'
     mod 'puppetlabs/stdlib', '4.1.0'
     """
-    When I run `librarian-puppet package --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet package --verbose`
     And the file "modules/apt/Modulefile" should match /name *'puppetlabs-apt'/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
     And the following files should exist:

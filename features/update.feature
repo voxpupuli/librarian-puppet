@@ -24,8 +24,7 @@ Feature: cli/update
     DEPENDENCIES
       puppetlabs/stdlib (~> 3.0)
     """
-    When I run `librarian-puppet update puppetlabs/stdlib`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update puppetlabs/stdlib`
     And the file "Puppetfile" should not exist
     And the file "Puppetfile.lock" should match /puppetlabs.stdlib \(3\.1\.1\)/
     And the file "modules/stdlib/Modulefile" should match /name *'puppetlabs-stdlib'/
@@ -71,8 +70,7 @@ Feature: cli/update
     DEPENDENCIES
       puppetlabs/stdlib (~> 3.0)
     """
-    When I run `librarian-puppet update puppetlabs-stdlib`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update puppetlabs-stdlib`
     And the file "Puppetfile.lock" should match /puppetlabs.stdlib \(3\.1\.1\)/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
     And the file "modules/stdlib/Modulefile" should match /version *'3\.1\.1'/
@@ -94,8 +92,7 @@ Feature: cli/update
     DEPENDENCIES
       puppetlabs/stdlib (~> 3.0)
     """
-    When I run `librarian-puppet update --verbose puppetlabs/stdlib`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update --verbose puppetlabs/stdlib`
     And the file "Puppetfile.lock" should match /puppetlabs.stdlib \(3\.1\.1\)/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
     And the file "modules/stdlib/Modulefile" should match /version *'3\.1\.1'/
@@ -120,11 +117,9 @@ Feature: cli/update
     DEPENDENCIES
       puppetlabs-stdlib (>= 0)
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the git revision of module "stdlib" should be "326a8fd801ecba11005189c10ca8749872ef6577"
-    When I run `librarian-puppet update`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update`
     And the git revision of module "stdlib" should be "c0b5ce3b015db9f50d486040c16d8de56c6b4991"
 
   Scenario: Updating a module with invalid versions in git
@@ -155,8 +150,7 @@ Feature: cli/update
     DEPENDENCIES
       apache (>= 0)
     """
-    When I run `librarian-puppet update apache`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update apache`
     And the file "Puppetfile.lock" should match /sha: d81999533af54a6fe510575d3b143308184a5005/
     And the file "modules/apache/Modulefile" should match /name *'puppetlabs-apache'/
     And the file "modules/apache/Modulefile" should match /version *'0\.5\.0-rc1'/
@@ -199,8 +193,7 @@ Feature: cli/update
     DEPENDENCIES
       maestrodev/test (>= 0)
     """
-    When I run `librarian-puppet update --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update --verbose`
     And the file "Puppetfile.lock" should match /maestrodev.test \(1\.0\.[1-9][0-9]\)/
     And the file "modules/test/Modulefile" should contain "name 'maestrodev-test'"
     And the file "modules/test/Modulefile" should match /version '1\.0\.[1-9][0-9]'/
@@ -227,15 +220,12 @@ Feature: cli/update
     ---
     LIBRARIAN_PUPPET_RSYNC: 'true'
     """
-    When I run `librarian-puppet config`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet config`
     And the output should contain "rsync: true"
-    When I run `librarian-puppet update --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update --verbose`
     And a directory named "modules/test" should exist
     And the file "modules/test" should have an inode and ctime
-    When I run `librarian-puppet update --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update --verbose`
     And a directory named "modules/test" should exist
     And the file "modules/test" should have the same inode and ctime as before
 
@@ -265,22 +255,18 @@ Feature: cli/update
     ---
     LIBRARIAN_PUPPET_RSYNC: 'true'
     """
-    When I run `librarian-puppet config`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet config`
     And the output should contain "rsync: true"
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "Puppetfile.lock" should contain "326a8fd801ecba11005189c10ca8749872ef6577"
     And the git revision of module "stdlib" should be "326a8fd801ecba11005189c10ca8749872ef6577"
     And a directory named "modules/stdlib" should exist
-    When I run `librarian-puppet update --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update --verbose`
     And a directory named "modules/stdlib" should exist
     And the file "modules/stdlib" should have an inode and ctime
     And the file "Puppetfile.lock" should contain "c0b5ce3b015db9f50d486040c16d8de56c6b4991"
     And the git revision of module "stdlib" should be "c0b5ce3b015db9f50d486040c16d8de56c6b4991"
-    When I run `librarian-puppet update --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet update --verbose`
     And a directory named "modules/stdlib" should exist
     And the file "modules/stdlib" should have the same inode and ctime as before
     And the file "Puppetfile.lock" should contain "c0b5ce3b015db9f50d486040c16d8de56c6b4991"
