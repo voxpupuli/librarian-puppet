@@ -37,21 +37,6 @@ module Librarian
 
             new(environment, uri, options)
           end
-
-          def client_api_version()
-            version = 1
-            pe_version = Librarian::Puppet.puppet_version.match(/\(Puppet Enterprise (.+)\)/)
-
-            # Puppet 3.6.0+ uses api v3
-            if Librarian::Puppet::puppet_gem_version >= Gem::Version.create('3.6.0.a')
-              version = 3
-            # Puppet enterprise 3.2.0+ uses api v3
-            elsif pe_version and Gem::Version.create(pe_version[1].strip) >= Gem::Version.create('3.2.0')
-              version = 3
-            end
-            return version
-          end
-
         end
 
         attr_accessor :environment
