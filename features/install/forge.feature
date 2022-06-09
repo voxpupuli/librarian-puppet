@@ -124,22 +124,26 @@ Feature: cli/install/forge
     """
     forge "https://forgeapi.puppetlabs.com"
 
-    mod 'puppetlabs/postgresql', '3.2.0'
-    mod 'puppetlabs/apt', '< 1.4.1' # 1.4.2 causes trouble in travis
+    mod 'puppetlabs/postgresql', '7.4.1'
+    mod 'puppetlabs/apt', '< 8.4.0'
     """
     When I successfully run `librarian-puppet install`
-    And the file "modules/postgresql/Modulefile" should match /name 'puppetlabs-postgresql'/
-    And the file "modules/postgresql/Modulefile" should match /version '3\.2\.0'/
+    And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
+    And the file "modules/postgresql/metadata.json" should match /"version": "7\.4\.1"/
+    And the file "modules/apt/metadata.json" should match /"name": "puppetlabs-apt"/
+    And the file "modules/apt/metadata.json" should match /"version": "8\.3\.0"/
 
     Given a file named "Puppetfile" with:
     """
     forge "https://forgeapi.puppetlabs.com"
 
-    mod 'puppetlabs/postgresql', :git => 'git://github.com/puppetlabs/puppet-postgresql', :ref => '3.3.0'
+    mod 'puppetlabs/postgresql', :git => 'https://github.com/puppetlabs/puppet-postgresql', :ref => 'v7.5.0'
     """
     When I successfully run `librarian-puppet install`
-    And the file "modules/postgresql/Modulefile" should match /name 'puppetlabs-postgresql'/
-    And the file "modules/postgresql/Modulefile" should match /version '3\.3\.0'/
+    And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
+    And the file "modules/postgresql/metadata.json" should match /"version": "7\.5\.0"/
+    And the file "modules/apt/metadata.json" should match /"name": "puppetlabs-apt"/
+    And the file "modules/apt/metadata.json" should not match /"version": "8\.3\.0"/
 
   Scenario: Installing a module that does not exist
     Given a file named "Puppetfile" with:
