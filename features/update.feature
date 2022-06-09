@@ -102,25 +102,34 @@ Feature: cli/update
     """
     forge "https://forgeapi.puppetlabs.com"
 
-    mod "puppetlabs-stdlib",
-      :git => "https://github.com/puppetlabs/puppetlabs-stdlib.git", :ref => "3.2.x"
+    mod "theforeman-dns",
+      :git => "https://github.com/theforeman/puppet-dns.git", :ref => "4.1-stable"
     """
     And a file named "Puppetfile.lock" with:
     """
-    GIT
-      remote: https://github.com/puppetlabs/puppetlabs-stdlib.git
-      ref: 3.2.x
-      sha: 326a8fd801ecba11005189c10ca8749872ef6577
+    FORGE
+      remote: https://forgeapi.puppetlabs.com
       specs:
-        puppetlabs-stdlib (3.2.1)
+        puppetlabs-concat (2.2.1)
+          puppetlabs-stdlib (>= 4.2.0, < 5.0.0)
+        puppetlabs-stdlib (4.25.1)
+
+    GIT
+      remote: https://github.com/theforeman/puppet-dns.git
+      ref: 4.1-stable
+      sha: 29150008f81c0be6de4d8913f60b9e014c3f398e
+      specs:
+        theforeman-dns (4.1.0)
+          puppetlabs-concat (>= 1.0.0, < 3.0.0)
+          puppetlabs-stdlib (>= 4.13.1, < 5.0.0)
 
     DEPENDENCIES
-      puppetlabs-stdlib (>= 0)
+      theforeman-dns (>= 0)
     """
     When I successfully run `librarian-puppet install`
-    And the git revision of module "stdlib" should be "326a8fd801ecba11005189c10ca8749872ef6577"
+    And the git revision of module "dns" should be "29150008f81c0be6de4d8913f60b9e014c3f398e"
     When I successfully run `librarian-puppet update`
-    And the git revision of module "stdlib" should be "c0b5ce3b015db9f50d486040c16d8de56c6b4991"
+    And the git revision of module "dns" should be "e530ae8b1f0d85b37a69e779d1de51d054ecc9f1"
 
   Scenario: Updating a module with invalid versions in git
     Given a file named "Puppetfile" with:
@@ -229,26 +238,34 @@ Feature: cli/update
     And a directory named "modules/test" should exist
     And the file "modules/test" should have the same inode and ctime as before
 
-  @announce
   Scenario: Updating a git module with the rsync configuration
     Given a file named "Puppetfile" with:
     """
     forge "https://forgeapi.puppetlabs.com"
 
-    mod "puppetlabs-stdlib",
-      :git => "https://github.com/puppetlabs/puppetlabs-stdlib.git", :ref => "3.2.x"
+    mod "theforeman-dns",
+      :git => "https://github.com/theforeman/puppet-dns.git", :ref => "4.1-stable"
     """
     And a file named "Puppetfile.lock" with:
     """
-    GIT
-      remote: https://github.com/puppetlabs/puppetlabs-stdlib.git
-      ref: 3.2.x
-      sha: 326a8fd801ecba11005189c10ca8749872ef6577
+    FORGE
+      remote: https://forgeapi.puppetlabs.com
       specs:
-        puppetlabs-stdlib (3.2.1)
+        puppetlabs-concat (2.2.1)
+          puppetlabs-stdlib (>= 4.2.0, < 5.0.0)
+        puppetlabs-stdlib (4.25.1)
+
+    GIT
+      remote: https://github.com/theforeman/puppet-dns.git
+      ref: 4.1-stable
+      sha: 29150008f81c0be6de4d8913f60b9e014c3f398e
+      specs:
+        theforeman-dns (4.1.0)
+          puppetlabs-concat (>= 1.0.0, < 3.0.0)
+          puppetlabs-stdlib (>= 4.13.1, < 5.0.0)
 
     DEPENDENCIES
-      puppetlabs-stdlib (>= 0)
+      theforeman-dns (>= 0)
     """
     And a file named ".librarian/puppet/config" with:
     """
@@ -258,16 +275,16 @@ Feature: cli/update
     When I successfully run `librarian-puppet config`
     And the output should contain "rsync: true"
     When I successfully run `librarian-puppet install`
-    And the file "Puppetfile.lock" should contain "326a8fd801ecba11005189c10ca8749872ef6577"
-    And the git revision of module "stdlib" should be "326a8fd801ecba11005189c10ca8749872ef6577"
-    And a directory named "modules/stdlib" should exist
+    And the file "Puppetfile.lock" should contain "29150008f81c0be6de4d8913f60b9e014c3f398e"
+    And the git revision of module "dns" should be "29150008f81c0be6de4d8913f60b9e014c3f398e"
+    And a directory named "modules/dns" should exist
     When I successfully run `librarian-puppet update --verbose`
-    And a directory named "modules/stdlib" should exist
-    And the file "modules/stdlib" should have an inode and ctime
-    And the file "Puppetfile.lock" should contain "c0b5ce3b015db9f50d486040c16d8de56c6b4991"
-    And the git revision of module "stdlib" should be "c0b5ce3b015db9f50d486040c16d8de56c6b4991"
+    And a directory named "modules/dns" should exist
+    And the file "modules/dns" should have an inode and ctime
+    And the file "Puppetfile.lock" should contain "e530ae8b1f0d85b37a69e779d1de51d054ecc9f1"
+    And the git revision of module "dns" should be "e530ae8b1f0d85b37a69e779d1de51d054ecc9f1"
     When I successfully run `librarian-puppet update --verbose`
-    And a directory named "modules/stdlib" should exist
-    And the file "modules/stdlib" should have the same inode and ctime as before
-    And the file "Puppetfile.lock" should contain "c0b5ce3b015db9f50d486040c16d8de56c6b4991"
-    And the git revision of module "stdlib" should be "c0b5ce3b015db9f50d486040c16d8de56c6b4991"
+    And a directory named "modules/dns" should exist
+    And the file "modules/dns" should have the same inode and ctime as before
+    And the file "Puppetfile.lock" should contain "e530ae8b1f0d85b37a69e779d1de51d054ecc9f1"
+    And the git revision of module "dns" should be "e530ae8b1f0d85b37a69e779d1de51d054ecc9f1"
