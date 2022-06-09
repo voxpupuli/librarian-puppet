@@ -73,13 +73,6 @@ module Librarian
             path = version_unpacked_cache_path(version)
             return if path.directory?
 
-            # The puppet module command is only available from puppet versions >= 2.7.13
-            #
-            # Specifying the version in the gemspec would force people to upgrade puppet while it's still usable for git
-            # So we do some more clever checking
-            #
-            # Executing older versions or via puppet-module tool gives an exit status = 0 .
-            #
             check_puppet_module_options
 
             path.mkpath
@@ -91,20 +84,9 @@ module Librarian
             # nor the other way around
             module_repository = source.uri.to_s
 
-            if Forge.client_api_version() > 1 and module_repository =~ %r{^http(s)?://forge\.puppetlabs\.com}
+            if module_repository =~ %r{^http(s)?://forge\.puppetlabs\.com}
               module_repository = "https://forgeapi.puppetlabs.com"
               warn { "Replacing Puppet Forge API URL to use v3 #{module_repository} as required by your client version #{Librarian::Puppet.puppet_version}" }
-            end
-
-            m = module_repository.match(%r{^http(s)?://forge(api)?\.puppetlabs\.com})
-            if Forge.client_api_version() == 1 and m
-              ssl = m[1]
-              # Puppet 2.7 can't handle the 302 returned by the https url, so stick to http
-              if ssl and Librarian::Puppet::puppet_gem_version < Gem::Version.create('3.0.0')
-                warn { "Using plain http as your version of Puppet #{Librarian::Puppet::puppet_gem_version} can't download from forge.puppetlabs.com using https" }
-                ssl = nil
-              end
-              module_repository = "http#{ssl}://forge.puppetlabs.com"
             end
 
             command = %W{puppet module install --version #{version} --target-dir}
@@ -132,10 +114,10 @@ module Librarian
           end
 
           def check_puppet_module_options
-            min_version    = Gem::Version.create('2.7.13')
+            min_version    = Gem::Version.create('3.6.0')
 
             if Librarian::Puppet.puppet_gem_version < min_version
-              raise Error, "To get modules from the forge, we use the puppet faces module command. For this you need at least puppet version 2.7.13 and you have #{Librarian::Puppet.puppet_version}"
+              raise Error, "To get modules from the forge you need at least puppet version 3.6.0 and you have #{Librarian::Puppet.puppet_version}"
             end
           end
 
