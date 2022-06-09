@@ -46,24 +46,24 @@ Feature: cli/install/git
     """
     forge "https://forgeapi.puppetlabs.com"
 
-    mod 'puppetlabs/postgresql', '4.0.0'
+    mod 'puppetlabs/postgresql', '7.4.1'
     """
     When I successfully run `librarian-puppet install`
     And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
-    And the file "modules/postgresql/metadata.json" should match /"version": "4\.0\.0"/
+    And the file "modules/postgresql/metadata.json" should match /"version": "7\.4\.1"/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
     When I overwrite "Puppetfile" with:
     """
     forge "https://forgeapi.puppetlabs.com"
 
     mod 'puppetlabs/postgresql',
-      :git => 'https://github.com/puppetlabs/puppetlabs-postgresql.git', :ref => '4.3.0'
+      :git => 'https://github.com/puppetlabs/puppetlabs-postgresql.git', :ref => 'v7.5.0'
     """
     And I run `librarian-puppet install`
     Then the exit status should be 0
     And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
-    And the file "modules/postgresql/metadata.json" should match /"version": "4\.3\.0"/
-    And the file "modules/postgresql/.git/HEAD" should match /9ca4b42450ea9c9ed8eec52dac48cb67187ae925/
+    And the file "modules/postgresql/metadata.json" should match /"version": "7\.5\.0"/
+    And the file "modules/postgresql/.git/HEAD" should match /0a2cb69ccbbb0a55d42c5da33d44b0eaf33f9546/
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
 
   Scenario: Install a module with dependencies specified in metadata.json
