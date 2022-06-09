@@ -162,16 +162,6 @@ Feature: cli/install/git
     And the file "modules/test/metadata.json" should match /"version": "0\.0\.1"/
     And a file named "modules/stdlib/metadata.json" should exist
 
-  Scenario: Install a module with mismatching Puppetfile and Modulefile
-    Given a file named "Puppetfile" with:
-    """
-    mod 'duritong/munin', :git => 'https://github.com/duritong/puppet-munin.git', :ref => '0bb71e'
-    """
-    When I successfully run `librarian-puppet install`
-    And the file "modules/munin/Modulefile" should match /name *'duritong-munin'/
-    And the file "modules/concat/metadata.json" should match /"name": *"puppetlabs-concat"/
-    And a file named "modules/stdlib/metadata.json" should exist
-
   Scenario: Install from Puppetfile with duplicated entries
     Given a file named "Puppetfile" with:
     """
