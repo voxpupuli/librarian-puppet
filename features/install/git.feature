@@ -176,10 +176,10 @@ Feature: cli/install/git
     Given a file named "Puppetfile" with:
     """
     mod 'puppetlabs-stdlib',
-      :git => 'git://github.com/puppetlabs/puppetlabs-stdlib.git'
+      :git => 'git://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => 'main'
 
     mod 'puppetlabs-stdlib',
-      :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
+      :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => 'main'
     """
     When I successfully run `librarian-puppet install`
     And the output should contain "Dependency 'puppetlabs-stdlib' duplicated for module, merging"

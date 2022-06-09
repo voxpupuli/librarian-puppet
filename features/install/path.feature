@@ -55,7 +55,7 @@ Feature: cli/install/path
     Given a file named "Puppetfile" with:
     """
     mod 'librarian/test', :path => '../../features/examples/test'
-    mod 'puppetlabs/stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib'
+    mod 'puppetlabs/stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib', :ref => 'main'
     """
     When I successfully run `librarian-puppet install`
     And the file "modules/test/metadata.json" should match /"name": "librarian-test"/
