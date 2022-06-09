@@ -13,8 +13,6 @@ Cucumber::Rake::Task.new(:features) do |t|
   require 'puppet'
   puppet_version = Puppet::version.gsub("~>","").split(".").first.to_i
   tags = (2..5).select {|i| i != puppet_version}.map{|i| "--tags '@puppet#{puppet_version} and not @puppet#{i}'"}
-  # don't run githubtarball scenarios in Travis, they easily fail with rate limit exceeded
-  tags << "--tags 'not @github'" if ENV['TRAVIS']=='true'
   t.cucumber_opts = tags.join(" ")
 end
 

@@ -1,7 +1,5 @@
 # Librarian-puppet
 
-[![Build Status](https://travis-ci.org/voxpupuli/librarian-puppet.png?branch=master)](https://travis-ci.org/voxpupuli/librarian-puppet)
-
 ## Introduction
 
 Librarian-puppet is a bundler for your puppet infrastructure.  You can use
