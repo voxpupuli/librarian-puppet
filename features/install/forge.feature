@@ -80,17 +80,18 @@ Feature: cli/install/forge
     """
     forge "https://forgeapi.puppetlabs.com"
 
-    mod 'puppetlabs/apache', '0.4.0'
-    mod 'puppetlabs/postgresql', '2.0.1'
-    mod 'puppetlabs-firewall', '<= 1.9.0' # apache has an unqualified dependency on firewall, which in turn pulls in a too-new version of stdlib
-    mod 'puppetlabs/apt', '< 1.4.1' # 1.4.2 causes trouble in travis
+    mod 'puppetlabs/apache', '7.0.0' # compatible with stdlib 8
+    mod 'puppetlabs/postgresql', '7.4.0' # incompatible with stdlib 8
 
     """
-    When I successfully run `librarian-puppet install --verbose`
-    And the file "modules/apache/Modulefile" should match /name *'puppetlabs-apache'/
-    And the file "modules/apache/Modulefile" should match /version *'0\.4\.0'/
-    And the file "modules/postgresql/Modulefile" should match /name *'puppetlabs-postgresql'/
-    And the file "modules/postgresql/Modulefile" should match /version *'2\.0\.1'/
+    # Default timeout is 15 seconds but this is too short in most cases
+    When I successfully run `librarian-puppet install --verbose` for up to 30 seconds
+    And the file "modules/apache/metadata.json" should match /"name": "puppetlabs-apache"/
+    And the file "modules/apache/metadata.json" should match /"version": "7\.0\.0"/
+    And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
+    And the file "modules/postgresql/metadata.json" should match /"version": "7\.4\.0"/
+    And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
+    And the file "modules/stdlib/metadata.json" should match /"version": "7\.1\.0"/
 
   Scenario: Installing a module with several constraints
     Given a file named "Puppetfile" with:
