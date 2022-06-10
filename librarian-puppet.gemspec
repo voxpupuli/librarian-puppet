@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   automatically pulling in modules from the forge and git repositories with
   a single command.'
 
-  s.required_ruby_version = '>= 2.5.0', '< 4'
+  s.required_ruby_version = '>= 2.7', '< 4'
 
   s.files = [
     '.gitignore',
