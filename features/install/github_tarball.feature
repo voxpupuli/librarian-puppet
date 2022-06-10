@@ -10,8 +10,7 @@ Feature: cli/install/github_tarball
     mod 'puppetlabs/apache', '0.6.0', :github_tarball => 'puppetlabs/puppetlabs-apache'
     mod 'puppetlabs/stdlib', '2.3.0', :github_tarball => 'puppetlabs/puppetlabs-stdlib'
     """
-    When I run `librarian-puppet install --verbose`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install --verbose`
     And the output should contain "Downloading <https://api.github.com/repos/puppetlabs/puppetlabs-apache/tarball/0.6.0"
     And the output should contain "Downloading <https://api.github.com/repos/puppetlabs/puppetlabs-stdlib/tarball/2.3.0"
     And the file "modules/apache/Modulefile" should match /name *'puppetlabs-apache'/
@@ -26,6 +25,5 @@ Feature: cli/install/github_tarball
     """
     mod 'puppetlabs/stdlib', '4.1.0', :github_tarball => 'puppetlabs/puppetlabs-stdlib'
     """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet install`
     And the file "modules/stdlib/Modulefile" should match /name *'puppetlabs-stdlib'/

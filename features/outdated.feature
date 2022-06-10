@@ -18,8 +18,7 @@ Feature: cli/outdated
     DEPENDENCIES
       puppetlabs/stdlib (~> 3.0)
     """
-    When I run `librarian-puppet outdated`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet outdated`
     And the output should match:
     """
     ^puppetlabs-stdlib \(3\.1\.0 -> [\.\d]+\)$
@@ -51,8 +50,7 @@ Feature: cli/outdated
     DEPENDENCIES
       test (>= 0)
     """
-    When I run `librarian-puppet outdated`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet outdated`
     And PENDING the output should match:
     # """
     # ^puppetlabs-stdlib \(3\.1\.0 -> [\.\d]+\)$

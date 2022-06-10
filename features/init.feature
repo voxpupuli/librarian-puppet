@@ -7,6 +7,5 @@ Feature: init subcommand should generate a Puppetfile
 
 
   Scenario: init subcommand should generate a Puppetfile
-    When I run `librarian-puppet init`
-    Then the exit status should be 0
+    When I successfully run `librarian-puppet init`
     Then a file named "Puppetfile" should exist
