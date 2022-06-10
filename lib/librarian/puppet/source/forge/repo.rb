@@ -73,8 +73,6 @@ module Librarian
             path = version_unpacked_cache_path(version)
             return if path.directory?
 
-            check_puppet_module_options
-
             path.mkpath
 
             target = vendored?(name, version) ? vendored_path(name, version).to_s : name
@@ -111,14 +109,6 @@ module Librarian
               raise Error, "Error executing puppet module install#{msg}. Check that this command succeeds:\n#{command.join(" ")}\nError:\n#{e.message}"
             end
 
-          end
-
-          def check_puppet_module_options
-            min_version    = Gem::Version.create('3.6.0')
-
-            if Librarian::Puppet.puppet_gem_version < min_version
-              raise Error, "To get modules from the forge you need at least puppet version 3.6.0 and you have #{Librarian::Puppet.puppet_version}"
-            end
           end
 
           def vendor_cache(name, version)
