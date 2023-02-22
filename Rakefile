@@ -32,3 +32,18 @@ task :bump do
   sh "git add #{path}"
   sh "git commit -m \"Bump version to #{new_version}\""
 end
+
+begin
+  require 'rubygems'
+  require 'github_changelog_generator/task'
+rescue LoadError
+else
+  GitHubChangelogGenerator::RakeTask.new :changelog do |config|
+    config.exclude_labels = %w{duplicate question invalid wontfix wont-fix skip-changelog}
+    config.user = 'voxpupuli'
+    config.project = 'librarian-puppet'
+    config.since_tag = 'v3.0.1'
+    gem_version = Gem::Specification.load("#{config.project}.gemspec").version
+    config.future_release = "v#{gem_version}"
+  end
+end
