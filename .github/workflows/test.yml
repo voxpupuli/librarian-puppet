@@ -11,7 +11,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-          - "2.4"
           - "2.5"
           - "2.6"
           - "2.7"
@@ -21,8 +20,6 @@ jobs:
           - "6"
           - "5"
         exclude:
-          - puppet: "7"
-            ruby: "2.4"
           - puppet: "6"
             ruby: "3.0"
           - puppet: "5"

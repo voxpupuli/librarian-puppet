@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   automatically pulling in modules from the forge and git repositories with
   a single command.'
 
-  s.required_ruby_version = '>= 2.4.0', '< 4'
+  s.required_ruby_version = '>= 2.5.0', '< 4'
 
   s.files = [
     '.gitignore',
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "aruba", ">= 1.0", "< 3"
   s.add_development_dependency "puppet", ENV["PUPPET_VERSION"]
   s.add_development_dependency "minitest", "~> 5"
-  s.add_development_dependency "mocha"
+  s.add_development_dependency "mocha", "<2.0.0"
   s.add_development_dependency "simplecov", ">= 0.9.0"
+  s.add_development_dependency "concurrent-ruby", "< 1.2"
 end
