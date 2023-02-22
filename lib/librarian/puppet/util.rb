@@ -70,9 +70,6 @@ module Librarian
         # module name can't have dashes, so let's assume it is everything after the last dash
         name.rpartition('-').last
       end
-
-      # deprecated
-      alias :organization_name :module_name
     end
   end
 end
