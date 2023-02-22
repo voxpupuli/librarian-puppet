@@ -1,5 +1,12 @@
 # Librarian-puppet
 
+[![License](https://img.shields.io/github/license/voxpupuli/librarian-puppet.svg)](https://github.com/voxpupuli/librarian-puppet/blob/master/LICENSE)
+[![Test](https://github.com/voxpupuli/librarian-puppet/actions/workflows/test.yml/badge.svg)](https://github.com/voxpupuli/librarian-puppet/actions/workflows/test.yml)
+[![Release](https://github.com/voxpupuli/librarian-puppet/actions/workflows/release.yml/badge.svg)](https://github.com/voxpupuli/librarian-puppet/actions/workflows/release.yml)
+[![RubyGem Version](https://img.shields.io/gem/v/librarian-puppet.svg)](https://rubygems.org/gems/librarian-puppet)
+[![RubyGem Downloads](https://img.shields.io/gem/dt/librarian-puppet.svg)](https://rubygems.org/gems/librarian-puppet)
+[![Donated by Tim Sharpe](https://img.shields.io/badge/donated%20by-Tim%20Sharpe-fb7047.svg)](#transfer-notice)
+
 ## Introduction
 
 Librarian-puppet is a bundler for your puppet infrastructure.  You can use
@@ -29,11 +36,13 @@ and isolate a project's dependencies.
 
 ## Versions
 
+Librarian-Puppet 4.0.0 and newer requires Ruby >= 2.5 and Puppet >= 5. Use version 3.0.1 is you need support for Puppet 3 or Puppet 4, or Ruby 2.4 or earlier.
+
 Librarian-Puppet 3.0.0 and newer requires Ruby >= 2.0. Use version 2.2.4 if you need support for Puppet 3.7 or earlier, or Ruby 1.9 or earlier. Note that [Puppet 4.10 and newer require Ruby 2.1](https://puppet.com/docs/puppet/4.10/system_requirements.html#prerequisites) or newer.
 
 Librarian-Puppet 2.0.0 and newer requires Ruby >= 1.9 and uses Puppet Forge API v3. For Ruby 1.8 use 1.5.0.
 
-See the [Changelog](Changelog.md) for more details.
+See the [Changelog](CHANGELOG.md) for more details.
 
 ## The Puppetfile
 
@@ -323,6 +332,12 @@ Please include:
  * Please run the `librarian-puppet` commands in verbose mode by using the
   `--verbose` flag, and include the verbose output in the bug report as well.
 
+
+## Transfer Notice
+
+This plugin was originally authored by [Tim Sharpe](https://github.com/rodjek).
+The maintainer preferred that [Vox Pupuli](https://voxpupuli.org/) take ownership of the module for future improvement and maintenance.
+Existing pull requests and issues were transferred, please fork and continue to contribute [here](https://github.com/voxpupuli/librarian-puppet).
 
 ## License
 Please see the [LICENSE](https://github.com/voxpupuli/librarian-puppet/blob/master/LICENSE)
