@@ -1,5 +1,12 @@
 # Librarian-puppet
 
+[![License](https://img.shields.io/github/license/voxpupuli/librarian-puppet.svg)](https://github.com/voxpupuli/librarian-puppet/blob/master/LICENSE)
+[![Test](https://github.com/voxpupuli/librarian-puppet/actions/workflows/test.yml/badge.svg)](https://github.com/voxpupuli/librarian-puppet/actions/workflows/test.yml)
+[![Release](https://github.com/voxpupuli/librarian-puppet/actions/workflows/release.yml/badge.svg)](https://github.com/voxpupuli/librarian-puppet/actions/workflows/release.yml)
+[![RubyGem Version](https://img.shields.io/gem/v/librarian-puppet.svg)](https://rubygems.org/gems/librarian-puppet)
+[![RubyGem Downloads](https://img.shields.io/gem/dt/librarian-puppet.svg)](https://rubygems.org/gems/librarian-puppet)
+[![Donated by Tim Sharpe](https://img.shields.io/badge/donated%20by-Tim%20Sharpe-fb7047.svg)](#transfer-notice)
+
 ## Introduction
 
 Librarian-puppet is a bundler for your puppet infrastructure.  You can use
@@ -323,6 +330,12 @@ Please include:
  * Please run the `librarian-puppet` commands in verbose mode by using the
   `--verbose` flag, and include the verbose output in the bug report as well.
 
+
+## Transfer Notice
+
+This plugin was originally authored by [Tim Sharpe](https://github.com/rodjek).
+The maintainer preferred that [Vox Pupuli](https://voxpupuli.org/) take ownership of the module for future improvement and maintenance.
+Existing pull requests and issues were transferred, please fork and continue to contribute [here](https://github.com/voxpupuli/librarian-puppet).
 
 ## License
 Please see the [LICENSE](https://github.com/voxpupuli/librarian-puppet/blob/master/LICENSE)
