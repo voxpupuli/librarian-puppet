@@ -40,7 +40,7 @@ Librarian-Puppet 3.0.0 and newer requires Ruby >= 2.0. Use version 2.2.4 if you 
 
 Librarian-Puppet 2.0.0 and newer requires Ruby >= 1.9 and uses Puppet Forge API v3. For Ruby 1.8 use 1.5.0.
 
-See the [Changelog](Changelog.md) for more details.
+See the [Changelog](CHANGELOG.md) for more details.
 
 ## The Puppetfile
 
