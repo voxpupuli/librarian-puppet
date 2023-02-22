@@ -36,6 +36,8 @@ and isolate a project's dependencies.
 
 ## Versions
 
+Librarian-Puppet 4.0.0 and newer requires Ruby >= 2.5 and Puppet >= 5. Use version 3.0.1 is you need support for Puppet 3 or Puppet 4, or Ruby 2.4 or earlier.
+
 Librarian-Puppet 3.0.0 and newer requires Ruby >= 2.0. Use version 2.2.4 if you need support for Puppet 3.7 or earlier, or Ruby 1.9 or earlier. Note that [Puppet 4.10 and newer require Ruby 2.1](https://puppet.com/docs/puppet/4.10/system_requirements.html#prerequisites) or newer.
 
 Librarian-Puppet 2.0.0 and newer requires Ruby >= 1.9 and uses Puppet Forge API v3. For Ruby 1.8 use 1.5.0.
