@@ -46,7 +46,7 @@ module Librarian
 
           specfile ||= Proc.new if block_given?
 
-          if specfile.kind_of?(Pathname) and !File.exists?(specfile)
+          if specfile.kind_of?(Pathname) and !File.exist?(specfile)
             debug { "Specfile #{specfile} not found, using defaults" } unless specfile.nil?
             receiver(target).run(specfile, &default_specfile)
           else
@@ -81,7 +81,7 @@ module Librarian
         # implement the 'modulefile' syntax for Puppetfile
         def modulefile
           f = modulefile_path
-          raise Error, "Modulefile file does not exist: #{f}" unless File.exists?(f)
+          raise Error, "Modulefile file does not exist: #{f}" unless File.exist?(f)
           File.read(f).lines.each do |line|
             regexp = /\s*dependency\s+('|")([^'"]+)\1\s*(?:,\s*('|")([^'"]+)\3)?/
             regexp =~ line && mod($2, $4)
@@ -91,10 +91,10 @@ module Librarian
         # implement the 'metadata' syntax for Puppetfile
         def metadata
           f = working_path.join('metadata.json')
-          unless File.exists?(f)
+          unless File.exist?(f)
             msg = "Metadata file does not exist: #{f}"
             # try modulefile, in case we don't have a Puppetfile and we are using the default template
-            if File.exists?(modulefile_path)
+            if File.exist?(modulefile_path)
               modulefile
               return
             else

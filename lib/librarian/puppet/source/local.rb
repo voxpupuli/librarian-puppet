@@ -139,7 +139,7 @@ module Librarian
         end
 
         def modulefile?
-          File.exists?(modulefile)
+          File.exist?(modulefile)
         end
 
         def metadata
@@ -147,7 +147,7 @@ module Librarian
         end
 
         def metadata?
-          File.exists?(metadata)
+          File.exist?(metadata)
         end
 
         def specfile
@@ -155,7 +155,7 @@ module Librarian
         end
 
         def specfile?
-          File.exists?(specfile)
+          File.exist?(specfile)
         end
 
         def install_perform_step_copy!(found_path, install_path)
