@@ -23,7 +23,7 @@ module Librarian
       def init
         copy_file environment.specfile_name
 
-        if File.exists? ".gitignore"
+        if File.exist? ".gitignore"
           gitignore = File.read('.gitignore').split("\n")
         else
           gitignore = []
