@@ -284,6 +284,12 @@ Configuration affects how various commands operate.
   path, it is relative to the directory containing the `Puppetfile`. The
   equivalent environment variable is `LIBRARIAN_PUPPET_TMP`.
 
+* The `use-short-cache-path` config shortens the cache path part of the Puppet
+  forge URI to the 7 first digits of its SHA1 checksum. This helps additionally
+  to the `tmp` config to avoid too long paths under Windows. Under Windows this
+  is especially important when you use an alternative Puppet forge with a quite
+  longer URI.
+
 Configuration can be set by passing specific options to other commands.
 
 * The `path` config can be set at the local level by passing the `--path` option
