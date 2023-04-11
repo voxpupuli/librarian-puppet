@@ -1,5 +1,13 @@
 # Changelog
 
+## [v4.0.1](https://github.com/voxpupuli/librarian-puppet/tree/v4.0.1) (2023-04-26)
+
+[Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v4.0.0...v4.0.1)
+
+**Fixed bugs:**
+
+- support ruby 3.2 by renaming File.exists? to File.exist? [\#98](https://github.com/voxpupuli/librarian-puppet/pull/98) ([shamil](https://github.com/shamil))
+
 ## [v4.0.0](https://github.com/voxpupuli/librarian-puppet/tree/v4.0.0) (2023-02-22)
 
 [Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v3.0.1...v4.0.0)
