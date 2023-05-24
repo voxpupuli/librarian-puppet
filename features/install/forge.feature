@@ -263,7 +263,7 @@ Feature: cli/install/forge
   Scenario: Installing from another forge with local reference should not try to download anything from the official forge
     Given a file named "Puppetfile" with:
     """
-    forge "http://127.0.0.1"
+    forge "http://127.0.0.1:8080"
 
     mod 'tester/tester', :path => './tester-tester'
     """
@@ -276,12 +276,12 @@ Feature: cli/install/forge
         "summary": "Just our own test",
         "license": "MIT",
         "dependencies": [
-            { "name": "puppetlabs/inifile" },
-            { "name": "tester/tester_dependency1" }
+            { "name": "puppetlabs/inifile" }
         ]
     }
     """
 
     When I run `librarian-puppet install --verbose`
-    And the output should not contain "forgeapi.puppetlabs.com"
-    And the output should contain "Querying Forge API for module puppetlabs-inifile: http://127.0.0.1/api/v1/releases.json?module=puppetlabs/inifile"
+    And the output should not contain "puppetlabs.com"
+    And the output should not contain "puppet.com"
+    And the output should contain "Resolving puppetlabs-inifile (>= 0) <http://127.0.0.1:8080>"

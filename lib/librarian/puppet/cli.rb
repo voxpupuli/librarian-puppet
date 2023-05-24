@@ -46,7 +46,7 @@ module Librarian
       option "path", :type => :string
       option "destructive", :type => :boolean, :default => false
       option "local", :type => :boolean, :default => false
-      option "use-v1-api", :type => :boolean, :default => true
+      option "use-v1-api", :type => :boolean, :default => false
       def install
 
         ensure!
@@ -73,7 +73,7 @@ module Librarian
       desc "update", "Updates and installs the dependencies you specify."
       option "verbose", :type => :boolean, :default => false
       option "line-numbers", :type => :boolean, :default => false
-      option "use-v1-api", :type => :boolean, :default => true
+      option "use-v1-api", :type => :boolean, :default => false
       def update(*names)
 
         environment.config_db.local['use-v1-api'] = options['use-v1-api'] ? '1' : nil
