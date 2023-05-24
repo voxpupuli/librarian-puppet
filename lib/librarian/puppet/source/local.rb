@@ -67,45 +67,6 @@ module Librarian
           end
         end
 
-        def require_puppet
-          begin
-            require 'puppet'
-            require 'puppet/module_tool'
-          rescue LoadError
-            $stderr.puts <<-EOF
-          Unable to load puppet, the puppet gem is required for :git and :path source.
-          Install it with: gem install puppet
-            EOF
-            exit 1
-          end
-          true
-        end
-
-        def evaluate_modulefile(modulefile)
-          @@require_puppet ||= require_puppet
-
-          metadata = ::Puppet::ModuleTool::Metadata.new
-
-          # Puppet 4 does not have the class
-          unless defined? ::Puppet::ModuleTool::ModulefileReader
-            warn { "Can't parse Modulefile in Puppet >= 4.0 and you are using #{Librarian::Puppet::puppet_version}. Ignoring dependencies in #{modulefile}" }
-            return metadata
-          end
-
-          begin
-            ::Puppet::ModuleTool::ModulefileReader.evaluate(metadata, modulefile)
-            raise SyntaxError, "Missing version" unless metadata.version
-          rescue ArgumentError, SyntaxError => error
-            warn { "Unable to parse #{modulefile}, ignoring: #{error}" }
-            if metadata.respond_to? :version=
-              metadata.version = '0.0.1' # puppet < 3.6
-            else
-              metadata.update({'version' => '0.0.1'}) # puppet >= 3.6
-            end
-          end
-          metadata
-        end
-
         def parsed_metadata
           if @metadata.nil?
             @metadata = if metadata?
@@ -114,32 +75,12 @@ module Librarian
               rescue JSON::ParserError => e
                 raise Error, "Unable to parse json file #{metadata}: #{e}"
               end
-            elsif modulefile?
-              # translate Modulefile to metadata.json
-              evaluated = evaluate_modulefile(modulefile)
-              {
-                'version' => evaluated.version,
-                'dependencies' => evaluated.dependencies.map do |dependency|
-                  {
-                    'name' => dependency.instance_variable_get(:@full_module_name),
-                    'version_requirement' => dependency.instance_variable_get(:@version_requirement)
-                  }
-                end
-              }
             else
               {}
             end
             @metadata['dependencies'] ||= []
           end
           @metadata
-        end
-
-        def modulefile
-          File.join(filesystem_path, 'Modulefile')
-        end
-
-        def modulefile?
-          File.exist?(modulefile)
         end
 
         def metadata

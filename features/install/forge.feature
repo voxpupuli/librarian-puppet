@@ -29,17 +29,6 @@ Feature: cli/install/forge
     When I successfully run `librarian-puppet install`
     And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
 
-  Scenario: Running install with no Puppetfile and Modulefile
-    Given there is no Puppetfile
-    And a file named "Modulefile" with:
-    """
-    name "random name"
-    dependency "puppetlabs/stdlib", "4.1.0"
-    """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
-    And the file "modules/stdlib/metadata.json" should match /"name": "puppetlabs-stdlib"/
-
   Scenario: Installing a module without forge
     Given a file named "Puppetfile" with:
     """
@@ -182,22 +171,6 @@ Feature: cli/install/forge
     When I successfully run `librarian-puppet install`
     And the file "modules/gitlab/Modulefile" should match /version *'0\.1\.0'/
 
-  Scenario: Source dependencies from Modulefile
-    Given a file named "Puppetfile" with:
-    """
-    forge "https://forgeapi.puppetlabs.com"
-
-    modulefile
-    """
-    And a file named "Modulefile" with:
-    """
-    name "random name"
-    dependency "puppetlabs/postgresql", "4.0.0"
-    """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
-    And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
-
   Scenario: Source dependencies from metadata.json
     Given a file named "Puppetfile" with:
     """
@@ -218,22 +191,6 @@ Feature: cli/install/forge
     }
     """
     When I successfully run `librarian-puppet install`
-    And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
-
-  Scenario: Source dependencies from Modulefile using dash instead of slash
-    Given a file named "Puppetfile" with:
-    """
-    forge "https://forgeapi.puppetlabs.com"
-
-    modulefile
-    """
-    And a file named "Modulefile" with:
-    """
-    name "random name"
-    dependency "puppetlabs-postgresql", "4.0.0"
-    """
-    When I run `librarian-puppet install`
-    Then the exit status should be 0
     And the file "modules/postgresql/metadata.json" should match /"name": "puppetlabs-postgresql"/
 
   Scenario: Installing a module with duplicated dependencies
