@@ -1,5 +1,27 @@
 # Changelog
 
+## [v5.0.0](https://github.com/voxpupuli/librarian-puppet/tree/v5.0.0) (2023-05-24)
+
+[Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v4.0.1...v5.0.0)
+
+**Breaking changes:**
+
+- Remove deprecated method alias [\#109](https://github.com/voxpupuli/librarian-puppet/pull/109) ([ekohl](https://github.com/ekohl))
+- Remove forge.puppetlabs.com -\> forgeapi.p.c rewrite [\#108](https://github.com/voxpupuli/librarian-puppet/pull/108) ([ekohl](https://github.com/ekohl))
+- Drop Modulefile support [\#106](https://github.com/voxpupuli/librarian-puppet/pull/106) ([ekohl](https://github.com/ekohl))
+- Require Ruby 2.7+ [\#103](https://github.com/voxpupuli/librarian-puppet/pull/103) ([ekohl](https://github.com/ekohl))
+- Default to using API v3 [\#102](https://github.com/voxpupuli/librarian-puppet/pull/102) ([ekohl](https://github.com/ekohl))
+- Start assuming Puppet 3.6+ is used [\#101](https://github.com/voxpupuli/librarian-puppet/pull/101) ([ekohl](https://github.com/ekohl))
+
+**Implemented enhancements:**
+
+- Allow puppet\_forge 4.x [\#107](https://github.com/voxpupuli/librarian-puppet/pull/107) ([ekohl](https://github.com/ekohl))
+
+**Merged pull requests:**
+
+- CI: run on PRs and merges to master [\#105](https://github.com/voxpupuli/librarian-puppet/pull/105) ([bastelfreak](https://github.com/bastelfreak))
+- Add dummy CI job we can depend on [\#104](https://github.com/voxpupuli/librarian-puppet/pull/104) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v4.0.1](https://github.com/voxpupuli/librarian-puppet/tree/v4.0.1) (2023-04-26)
 
 [Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v4.0.0...v4.0.1)
