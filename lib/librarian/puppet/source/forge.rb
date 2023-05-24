@@ -46,11 +46,6 @@ module Librarian
         def initialize(environment, uri, options = {})
           self.environment = environment
 
-          if uri =~ %r{^http(s)?://forge\.puppetlabs\.com}
-            uri = "https://forgeapi.puppetlabs.com"
-            warn { "Replacing Puppet Forge API URL to use v3 #{uri}. You should update your Puppetfile" }
-          end
-
           @uri = URI::parse(uri)
           @cache_path = nil
         end
