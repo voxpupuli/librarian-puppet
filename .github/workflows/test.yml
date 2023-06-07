@@ -18,12 +18,18 @@ jobs:
         ruby:
           - "2.7"
           - "3.0"
+          - "3.1"
+          - "3.2"
         puppet:
           - "7"
           - "6"
         exclude:
           - puppet: "6"
             ruby: "3.0"
+          - puppet: "6"
+            ruby: "3.1"
+          - puppet: "6"
+            ruby: "3.2"
     name: Ruby ${{ matrix.ruby }} + Puppet ${{ matrix.puppet }}
     env:
       PUPPET_VERSION: "~> ${{ matrix.puppet }}.0"
