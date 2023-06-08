@@ -20,7 +20,7 @@ describe 'Librarian::Puppet::Action::Resolve' do
       resolution = environment.lock.manifests.map { |m| {:name => m.name, :version => m.version.to_s, :source => m.source.to_s} }
       expect(resolution.size).to eq(1)
       expect(resolution.first[:name]).to eq("puppetlabs-stdlib")
-      expect(resolution.first[:source]).to eq("https://forgeapi.puppetlabs.com")
+      expect(resolution.first[:source]).to eq("https://forgeapi.puppet.com")
       expect(resolution.first[:version]).to match(/\d+\.\d+\.\d+/)
     end
 

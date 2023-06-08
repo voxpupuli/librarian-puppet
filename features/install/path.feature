@@ -32,7 +32,7 @@ Feature: cli/install/path
   Scenario: Install a module from path without version
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'test', :path => '../../features/examples/dependency_without_version'
     """
