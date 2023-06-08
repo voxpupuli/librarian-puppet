@@ -40,7 +40,9 @@ module Librarian
           def get_module
             begin
               @module ||= PuppetForge::V3::Module.find(name)
-            rescue Faraday::ResourceNotFound => e
+              # https://github.com/puppetlabs/forge-ruby/pull/104/files starting with version 5, PuppetForge::ModuleNotFound is raised
+              # previous versions raise Faraday::ResourceNotFound
+            rescue Faraday::ResourceNotFound, PuppetForge::ModuleNotFound => e
               raise(Error, "Unable to find module '#{name}' on #{source}")
             end
             @module
