@@ -7,7 +7,7 @@ include Librarian::Puppet::Source
 describe Forge do
 
   let(:environment) { Librarian::Puppet::Environment.new }
-  let(:uri) { "https://forgeapi.puppetlabs.com" }
+  let(:uri) { "https://forgeapi.puppet.com" }
   subject { Forge.new(environment, uri) }
 
   describe "#manifests" do

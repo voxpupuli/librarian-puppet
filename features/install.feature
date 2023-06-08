@@ -19,7 +19,7 @@ Feature: cli/install
   Scenario: Install a module transitive dependency from git and forge should be deterministic
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'puppetlabs/stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => '4.6.0'
     mod 'librarian/test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
@@ -31,7 +31,7 @@ Feature: cli/install
   Scenario: Install duplicated dependencies from git and forge, last one wins
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     metadata
     mod 'puppetlabs-stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git', :ref => '4.6.0'
@@ -55,7 +55,7 @@ Feature: cli/install
   Scenario: Installing two modules with same name and using exclusions
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'librarian-duplicated_dependencies', :path => '../../features/examples/duplicated_dependencies'
     exclusion 'ripienaar-concat'
@@ -67,7 +67,7 @@ Feature: cli/install
   Scenario: Installing two modules with same name and using exclusions, apply transitively
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'librarian-duplicated_dependencies_transitive', :path => '../../features/examples/duplicated_dependencies_transitive'
     """
@@ -78,7 +78,7 @@ Feature: cli/install
   Scenario: Install a module with the rsync configuration using the --clean flag
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'maestrodev/test'
     """
@@ -99,7 +99,7 @@ Feature: cli/install
   Scenario: Install a module with the rsync configuration using the --destructive flag
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'maestrodev/test'
     """
@@ -121,7 +121,7 @@ Feature: cli/install
   Scenario: Install a module with the rsync configuration
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'maestrodev/test'
     """

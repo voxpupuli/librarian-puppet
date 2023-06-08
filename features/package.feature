@@ -4,7 +4,7 @@ Feature: cli/package
   Scenario: Packaging a forge module
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'puppetlabs/apt', '1.4.0'
     mod 'puppetlabs/stdlib', '4.1.0'
@@ -19,7 +19,7 @@ Feature: cli/package
   Scenario: Packaging a git module
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'puppetlabs/apt', '1.5.0', :git => 'https://github.com/puppetlabs/puppetlabs-apt.git', :ref => '1.5.0'
     mod 'puppetlabs/stdlib', '4.1.0'
@@ -35,7 +35,7 @@ Feature: cli/package
   Scenario: Packaging a github tarball module
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'puppetlabs/apt', '1.4.0', :github_tarball => 'puppetlabs/puppetlabs-apt'
     mod 'puppetlabs/stdlib', '4.1.0'

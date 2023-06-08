@@ -59,14 +59,14 @@ If no Puppetfile is present, `librarian-puppet` will download all the dependenci
 listed in your `metadata.json` or `Modulefile` from the Puppet Forge,
 as if the Puppetfile contained
 
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     metadata
 
 
 ### Example Puppetfile
 
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'puppetlabs-razor'
     mod 'puppetlabs-ntp', "0.0.3"
@@ -92,7 +92,7 @@ When fetching a module all dependencies specified in its
 
 ### Puppetfile Breakdown
 
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
 This declares that we want to use the official Puppet Labs Forge as our default
 source when pulling down modules.  If you run your own local forge, you may

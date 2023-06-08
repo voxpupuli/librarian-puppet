@@ -4,14 +4,14 @@ Feature: cli/outdated
   Scenario: Running outdated with forge modules
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'puppetlabs/stdlib', '>=3.1.x'
     """
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         puppetlabs/stdlib (3.1.0)
 
@@ -27,14 +27,14 @@ Feature: cli/outdated
   Scenario: Running outdated with git modules
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
     """
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         puppetlabs/stdlib (3.1.0)
 

@@ -17,7 +17,7 @@ Feature: cli/update
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         puppetlabs/stdlib (3.1.0)
 
@@ -33,14 +33,14 @@ Feature: cli/update
   Scenario: Updating a module
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'puppetlabs/stdlib', '3.1.x'
     """
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         puppetlabs/stdlib (3.1.0)
 
@@ -55,14 +55,14 @@ Feature: cli/update
   Scenario: Updating a module using organization/module
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'puppetlabs/stdlib', '3.1.x'
     """
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         puppetlabs/stdlib (3.1.0)
 
@@ -77,7 +77,7 @@ Feature: cli/update
   Scenario: Updating a module from git with a branch ref
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod "theforeman-dns",
       :git => "https://github.com/theforeman/puppet-dns.git", :ref => "4.1-stable"
@@ -85,7 +85,7 @@ Feature: cli/update
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         puppetlabs-concat (2.2.1)
           puppetlabs-stdlib (>= 4.2.0, < 5.0.0)
@@ -111,7 +111,7 @@ Feature: cli/update
   Scenario: Updating a module with invalid versions in git
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod "apache",
       :git => "https://github.com/puppetlabs/puppetlabs-apache.git", :ref => "0.5.0-rc1"
@@ -119,7 +119,7 @@ Feature: cli/update
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         puppetlabs/firewall (0.0.4)
         puppetlabs/stdlib (3.2.0)
@@ -144,14 +144,14 @@ Feature: cli/update
   Scenario: Updating a module that is not in the Puppetfile
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'puppetlabs/stdlib', '3.1.x'
     """
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         puppetlabs/stdlib (3.1.0)
 
@@ -165,14 +165,14 @@ Feature: cli/update
   Scenario: Updating a module to a .10 release to ensure versions are correctly ordered
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'maestrodev/test'
     """
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         maestrodev/test (1.0.2)
 
@@ -187,14 +187,14 @@ Feature: cli/update
   Scenario: Updating a forge module with the rsync configuration
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod 'maestrodev/test'
     """
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         maestrodev/test (1.0.2)
 
@@ -218,7 +218,7 @@ Feature: cli/update
   Scenario: Updating a git module with the rsync configuration
     Given a file named "Puppetfile" with:
     """
-    forge "https://forgeapi.puppetlabs.com"
+    forge "https://forgeapi.puppet.com"
 
     mod "theforeman-dns",
       :git => "https://github.com/theforeman/puppet-dns.git", :ref => "4.1-stable"
@@ -226,7 +226,7 @@ Feature: cli/update
     And a file named "Puppetfile.lock" with:
     """
     FORGE
-      remote: https://forgeapi.puppetlabs.com
+      remote: https://forgeapi.puppet.com
       specs:
         puppetlabs-concat (2.2.1)
           puppetlabs-stdlib (>= 4.2.0, < 5.0.0)
