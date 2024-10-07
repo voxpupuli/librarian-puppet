@@ -40,7 +40,7 @@ rescue LoadError
   # Part of an optional group
 else
   GitHubChangelogGenerator::RakeTask.new :changelog do |config|
-    config.exclude_labels = %w[duplicate question invalid wontfix wont-fix skip-changelog]
+    config.exclude_labels = %w[duplicate question invalid wontfix wont-fix skip-changelog github_actions]
     config.user = 'voxpupuli'
     config.project = 'librarian-puppet'
     config.since_tag = 'v3.0.1'
