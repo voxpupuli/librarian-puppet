@@ -31,11 +31,11 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
-  s.add_development_dependency "cucumber", "<9.0.0"
+  s.add_development_dependency "cucumber", '~> 9.2'
   s.add_development_dependency "aruba", ">= 1.0", "< 3"
   s.add_development_dependency "puppet", ENV["PUPPET_VERSION"]
   s.add_development_dependency "minitest", "~> 5"
   s.add_development_dependency "mocha", '~> 2.7'
   s.add_development_dependency "simplecov", ">= 0.9.0"
-  s.add_development_dependency "concurrent-ruby", "< 1.2"
+  s.add_development_dependency "concurrent-ruby", '~> 1.3'
 end
