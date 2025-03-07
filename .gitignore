@@ -1,5 +1,12 @@
-pkg/
+/pkg/
 Gemfile.lock
-tmp/
-coverage/
+/tmp/
+/coverage/
 *.gem
+/.bundle/
+/.vendor/
+/.librarian/
+/.tmp/
+/Puppetfile
+/Puppetfile.lock
+/modules/
