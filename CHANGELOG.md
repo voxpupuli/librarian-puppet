@@ -1,5 +1,22 @@
 # Changelog
 
+## [v5.1.0](https://github.com/voxpupuli/librarian-puppet/tree/v5.1.0) (2025-03-07)
+
+[Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v5.0.0...v5.1.0)
+
+**Implemented enhancements:**
+
+- puppet\_forge: Allow 6.x [\#129](https://github.com/voxpupuli/librarian-puppet/pull/129) ([bastelfreak](https://github.com/bastelfreak))
+- Switch from forgeapi.puppetlabs.com-\>forgeapi.puppet.com [\#117](https://github.com/voxpupuli/librarian-puppet/pull/117) ([bastelfreak](https://github.com/bastelfreak))
+- Add Puppet 8 support [\#113](https://github.com/voxpupuli/librarian-puppet/pull/113) ([bastelfreak](https://github.com/bastelfreak))
+- Add Ruby 3.1/3.2 support [\#112](https://github.com/voxpupuli/librarian-puppet/pull/112) ([bastelfreak](https://github.com/bastelfreak))
+- puppet\_forge: Allow 5.x [\#111](https://github.com/voxpupuli/librarian-puppet/pull/111) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- GCG: Add faraday-retry dep [\#115](https://github.com/voxpupuli/librarian-puppet/pull/115) ([bastelfreak](https://github.com/bastelfreak))
+- CI: Exclude release gem group [\#114](https://github.com/voxpupuli/librarian-puppet/pull/114) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v5.0.0](https://github.com/voxpupuli/librarian-puppet/tree/v5.0.0) (2023-05-24)
 
 [Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v4.0.1...v5.0.0)
@@ -67,7 +84,7 @@
 - Actually run acceptance tests [\#92](https://github.com/voxpupuli/librarian-puppet/pull/92) ([ekohl](https://github.com/ekohl))
 - Typo [\#87](https://github.com/voxpupuli/librarian-puppet/pull/87) ([sboyd-m](https://github.com/sboyd-m))
 - Add --\[no-\]use-v1-api option to update command [\#75](https://github.com/voxpupuli/librarian-puppet/pull/75) ([dwminer](https://github.com/dwminer))
-- Support basic auth for forge [\#69](https://github.com/voxpupuli/librarian-puppet/pull/69) ([kim-sondrup](https://github.com/kim-sondrup))
+- Support basic auth for forge [\#69](https://github.com/voxpupuli/librarian-puppet/pull/69) ([kimsondrup](https://github.com/kimsondrup))
 
 ## 3.0.1
 
