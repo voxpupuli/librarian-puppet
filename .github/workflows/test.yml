@@ -20,6 +20,8 @@ jobs:
       matrix:
         ruby:
           - "3.2"
+          - "3.3"
+          - "3.4"
         openvox:
           - "8"
     name: Ruby ${{ matrix.ruby }} + OpenVox ${{ matrix.openvox }}
