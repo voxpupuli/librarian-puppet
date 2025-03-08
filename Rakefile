@@ -1,4 +1,5 @@
-require 'bundler/setup'
+# frozen_string_literal: true
+
 require 'cucumber/rake/task'
 require 'rspec/core/rake_task'
 require 'bundler/gem_tasks'
@@ -16,9 +17,9 @@ Rake::TestTask.new do |test|
   test.verbose = true
 end
 
-task :default => [:test, :spec, :features]
+task default: [:test, :spec, :features]
 
-desc "Bump version to the next minor"
+desc 'Bump version to the next minor'
 task :bump do
   path = 'lib/librarian/puppet/version.rb'
   version_file = File.read(path)
@@ -26,7 +27,7 @@ task :bump do
   v = Gem::Version.new("#{version}.0")
   new_version = v.bump.to_s
   version_file = version_file.gsub(/VERSION = ".*"/, "VERSION = \"#{new_version}\"")
-  File.open(path, "w") {|file| file.puts version_file}
+  File.write(version_file)
   sh "git add #{path}"
   sh "git commit -m \"Bump version to #{new_version}\""
 end
@@ -35,9 +36,10 @@ begin
   require 'rubygems'
   require 'github_changelog_generator/task'
 rescue LoadError
+  # Part of an optional group
 else
   GitHubChangelogGenerator::RakeTask.new :changelog do |config|
-    config.exclude_labels = %w{duplicate question invalid wontfix wont-fix skip-changelog github_actions}
+    config.exclude_labels = %w[duplicate question invalid wontfix wont-fix skip-changelog github_actions]
     config.user = 'voxpupuli'
     config.project = 'librarian-puppet'
     config.since_tag = 'v3.0.1'
