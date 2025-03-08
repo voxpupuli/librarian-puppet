@@ -38,4 +38,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "mocha", '~> 2.7'
   s.add_development_dependency "simplecov", ">= 0.9.0"
   s.add_development_dependency "concurrent-ruby", '~> 1.3'
+  s.add_development_dependency 'voxpupuli-rubocop', '~> 3.0.0'
 end
