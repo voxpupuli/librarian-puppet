@@ -42,7 +42,7 @@ jobs:
       - name: Run tests
         run: bundle exec rake
       - name: Verify gem builds
-        run: gem build *.gemspec
+        run: gem build --strict --verbose *.gemspec
   tests:
     needs:
       - test
