@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'librarian/puppet/source/forge'
 require 'librarian/puppet/environment'
 require 'librarian/puppet/extension'

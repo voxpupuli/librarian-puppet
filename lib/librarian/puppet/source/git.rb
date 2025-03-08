@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'librarian/source/git'
 require 'librarian/puppet/source/local'
 

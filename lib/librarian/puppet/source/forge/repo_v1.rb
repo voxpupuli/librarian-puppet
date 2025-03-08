@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 require 'open-uri'
 require 'librarian/puppet/source/forge/repo'

@@ -1,1 +1,3 @@
+# frozen_string_literal: true
+
 mod 'librarian/test', path: '../../features/examples/test'

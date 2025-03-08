@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # parent class for githubtarball and forge source Repos
 module Librarian
   module Puppet

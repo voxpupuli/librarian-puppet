@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Then(/^the file "([^"]*)" should have an inode and ctime$/) do |file|
   cd('.') do
     stat = File.stat(File.expand_path(file))

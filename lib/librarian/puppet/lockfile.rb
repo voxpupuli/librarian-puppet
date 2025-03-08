@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Extend Lockfile to normalize module names from acme/mod to acme-mod
 module Librarian
   module Puppet

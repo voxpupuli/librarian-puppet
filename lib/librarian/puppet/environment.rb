@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'librarian/environment'
 require 'librarian/puppet/dsl'
 require 'librarian/puppet/source'

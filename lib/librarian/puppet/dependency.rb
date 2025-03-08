@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Librarian
   module Puppet
     class Dependency < Librarian::Dependency
