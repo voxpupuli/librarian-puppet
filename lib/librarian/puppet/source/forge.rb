@@ -25,15 +25,13 @@ module Librarian
           end
 
           def from_lock_options(environment, options)
-            new(environment, options[:remote], options.reject { |k, v| k == :remote })
+            new(environment, options[:remote], options.reject { |k, _v| k == :remote })
           end
 
           def from_spec_args(environment, uri, options)
             recognised_options = []
             unrecognised_options = options.keys - recognised_options
-            unless unrecognised_options.empty?
-              raise Error, "unrecognised options: #{unrecognised_options.join(", ")}"
-            end
+            raise Error, "unrecognised options: #{unrecognised_options.join(', ')}" unless unrecognised_options.empty?
 
             new(environment, uri, options)
           end
@@ -43,10 +41,10 @@ module Librarian
         private :environment=
         attr_reader :uri
 
-        def initialize(environment, uri, options = {})
+        def initialize(environment, uri, _options = {})
           self.environment = environment
 
-          @uri = URI::parse(uri)
+          @uri = URI.parse(uri)
           @cache_path = nil
         end
 
@@ -56,14 +54,14 @@ module Librarian
 
         def ==(other)
           other &&
-          self.class == other.class &&
-          self.uri == other.uri
+            self.class == other.class &&
+            uri == other.uri
         end
 
-        alias :eql? :==
+        alias eql? ==
 
         def hash
-          self.to_s.hash
+          to_s.hash
         end
 
         def to_spec_args
@@ -71,15 +69,14 @@ module Librarian
         end
 
         def to_lock_options
-          {:remote => uri.to_s}
+          { remote: uri.to_s }
         end
 
         def pinned?
           false
         end
 
-        def unpin!
-        end
+        def unpin!; end
 
         def install!(manifest)
           manifest.source == self or raise ArgumentError
@@ -121,7 +118,7 @@ module Librarian
           end
         end
 
-        def fetch_dependencies(name, version, version_uri)
+        def fetch_dependencies(name, version, _version_uri)
           repo(name).dependencies(version).map do |k, v|
             v = Librarian::Dependency::Requirement.new(v).to_gem_requirement
             Dependency.new(k, v, nil, name)
@@ -132,19 +129,19 @@ module Librarian
           repo(name).manifests
         end
 
-      private
+        private
 
         def repo(name)
           @repo ||= {}
 
           unless @repo[name]
-            # If we are using the official Forge then use API v3, otherwise use the preferred api 
+            # If we are using the official Forge then use API v3, otherwise use the preferred api
             # as defined by the CLI option use_v1_api
-            if !environment.use_v1_api
-              @repo[name] = RepoV3.new(self, name)
-            else
-              @repo[name] = RepoV1.new(self, name)
-            end
+            @repo[name] = if environment.use_v1_api
+                            RepoV1.new(self, name)
+                          else
+                            RepoV3.new(self, name)
+                          end
           end
           @repo[name]
         end

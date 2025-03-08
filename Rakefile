@@ -17,7 +17,7 @@ Rake::TestTask.new do |test|
   test.verbose = true
 end
 
-task default: [:test, :spec, :features]
+task default: %i[test spec features]
 
 desc 'Bump version to the next minor'
 task :bump do

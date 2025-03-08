@@ -3,7 +3,6 @@ require 'librarian/resolver'
 module Librarian
   module Puppet
     class Resolver < Librarian::Resolver
-
       class Implementation < Librarian::Resolver::Implementation
         def sourced_dependency_for(dependency)
           return dependency if dependency.source
@@ -14,7 +13,7 @@ module Librarian
       end
 
       def implementation(spec)
-        Implementation.new(self, spec, :cyclic => cyclic)
+        Implementation.new(self, spec, cyclic: cyclic)
       end
     end
   end

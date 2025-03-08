@@ -17,10 +17,9 @@ module Librarian
 
           def versions
             return @versions if @versions
+
             data = api_call("/repos/#{source.uri}/tags")
-            if data.nil?
-              raise Error, "Unable to find module '#{source.uri}' on https://github.com"
-            end
+            raise Error, "Unable to find module '#{source.uri}' on https://github.com" if data.nil?
 
             all_versions = data.map { |r| r['name'].gsub(/^v/, '') }.sort.reverse
 
@@ -29,7 +28,7 @@ module Librarian
             end
 
             @versions = all_versions.compact
-            debug { "  Module #{name} found versions: #{@versions.join(", ")}" }
+            debug { "  Module #{name} found versions: #{@versions.join(', ')}" }
             @versions
           end
 
@@ -48,9 +47,7 @@ module Librarian
 
             cache_version_unpacked! version
 
-            if install_path.exist? && rsync? != true
-              install_path.rmtree
-            end
+            install_path.rmtree if install_path.exist? && rsync? != true
 
             unpacked_path = version_unpacked_cache_path(version).children.first
             cp_r(unpacked_path, install_path)
@@ -64,7 +61,7 @@ module Librarian
 
             target = vendored?(vendored_name, version) ? vendored_path(vendored_name, version) : name
 
-            Librarian::Posix.run!(%W{tar xzf #{target} -C #{path}})
+            Librarian::Posix.run!(%W[tar xzf #{target} -C #{path}])
           end
 
           def vendor_cache(name, version)
@@ -75,17 +72,15 @@ module Librarian
 
             environment.vendor!
             File.open(vendored_path(vendored_name(name), version).to_s, 'wb') do |f|
-              begin
-                debug { "Downloading <#{url}> to <#{f.path}>" }
-                URI.open(url,
-                  "User-Agent" => "librarian-puppet v#{Librarian::Puppet::VERSION}") do |res|
-                  while buffer = res.read(8192)
-                    f.write(buffer)
-                  end
+              debug { "Downloading <#{url}> to <#{f.path}>" }
+              URI.open(url,
+                       'User-Agent' => "librarian-puppet v#{Librarian::Puppet::VERSION}") do |res|
+                while buffer = res.read(8192)
+                  f.write(buffer)
                 end
-              rescue OpenURI::HTTPError => e
-                raise e, "Error requesting <#{url}>: #{e.to_s}"
               end
+            rescue OpenURI::HTTPError => e
+              raise e, "Error requesting <#{url}>: #{e}"
             end
           end
 
@@ -96,37 +91,38 @@ module Librarian
           end
 
           def token_key_value
-            ENV[TOKEN_KEY]
+            ENV.fetch(TOKEN_KEY, nil)
           end
 
           def token_key_nil?
             token_key_value.nil? || token_key_value.empty?
           end
 
-          def add_api_token_to_url url
+          def add_api_token_to_url(url)
             if token_key_nil?
               debug { "#{TOKEN_KEY} environment value is empty or missing" }
-            elsif url.include? "?"
-              url << "&access_token=#{ENV[TOKEN_KEY]}"
+            elsif url.include? '?'
+              url << "&access_token=#{ENV.fetch(TOKEN_KEY, nil)}"
             else
-              url << "?access_token=#{ENV[TOKEN_KEY]}"
+              url << "?access_token=#{ENV.fetch(TOKEN_KEY, nil)}"
             end
             url
           end
 
-        private
+          private
 
           def api_call(path)
             tags = []
             url = "https://api.github.com#{path}?page=1&per_page=100"
-            while true do
+            while true
               debug { "  Module #{name} getting tags at: #{url}" }
               add_api_token_to_url(url)
-              response = http_get(url, :headers => {
-                "User-Agent" => "librarian-puppet v#{Librarian::Puppet::VERSION}"
-              })
+              response = http_get(url, headers: {
+                                    'User-Agent' => "librarian-puppet v#{Librarian::Puppet::VERSION}",
+                                  })
 
-              code, data = response.code.to_i, response.body
+              code = response.code.to_i
+              data = response.body
 
               if code == 200
                 tags.concat JSON.parse(data)
@@ -145,12 +141,14 @@ module Librarian
               end
 
               # next page
-              break if response["link"].nil?
-              next_link = response["link"].split(",").select{|l| l.match /rel=.*next.*/}
+              break if response['link'].nil?
+
+              next_link = response['link'].split(',').select { |l| l.match(/rel=.*next.*/) }
               break if next_link.empty?
+
               url = next_link.first.match(/<(.*)>/)[1]
             end
-            return tags
+            tags
           end
 
           def http_get(url, options)
@@ -163,7 +161,7 @@ module Librarian
           end
 
           def vendored_name(name = source.uri.to_s)
-            name.sub('/','-')
+            name.sub('/', '-')
           end
         end
       end

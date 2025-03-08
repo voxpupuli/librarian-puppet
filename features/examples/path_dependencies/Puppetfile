@@ -1,1 +1,1 @@
-mod 'librarian/test', :path => '../../features/examples/test'
+mod 'librarian/test', path: '../../features/examples/test'

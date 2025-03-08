@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-#^syntax detection
+# ^syntax detection
 
-forge "https://forgeapi.puppet.com"
+forge 'https://forgeapi.puppet.com'
 
 # use dependencies defined in metadata.json
 metadata

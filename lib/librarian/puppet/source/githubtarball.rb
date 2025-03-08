@@ -16,15 +16,13 @@ module Librarian
           end
 
           def from_lock_options(environment, options)
-            new(environment, options[:remote], options.reject { |k, v| k == :remote })
+            new(environment, options[:remote], options.reject { |k, _v| k == :remote })
           end
 
           def from_spec_args(environment, uri, options)
             recognised_options = []
             unrecognised_options = options.keys - recognised_options
-            unless unrecognised_options.empty?
-              raise Error, "unrecognised options: #{unrecognised_options.join(", ")}"
-            end
+            raise Error, "unrecognised options: #{unrecognised_options.join(', ')}" unless unrecognised_options.empty?
 
             new(environment, uri, options)
           end
@@ -34,9 +32,9 @@ module Librarian
         private :environment=
         attr_reader :uri
 
-        def initialize(environment, uri, options = {})
+        def initialize(environment, uri, _options = {})
           self.environment = environment
-          @uri = URI::parse(uri)
+          @uri = URI.parse(uri)
           @cache_path = nil
         end
 
@@ -46,14 +44,14 @@ module Librarian
 
         def ==(other)
           other &&
-          self.class == other.class &&
-          self.uri == other.uri
+            self.class == other.class &&
+            uri == other.uri
         end
 
-        alias :eql? :==
+        alias eql? ==
 
         def hash
-          self.to_s.hash
+          to_s.hash
         end
 
         def to_spec_args
@@ -61,15 +59,14 @@ module Librarian
         end
 
         def to_lock_options
-          {:remote => clean_uri(uri).to_s}
+          { remote: clean_uri(uri).to_s }
         end
 
         def pinned?
           false
         end
 
-        def unpin!
-        end
+        def unpin!; end
 
         def install!(manifest)
           manifest.source == self or raise ArgumentError
@@ -92,9 +89,7 @@ module Librarian
         end
 
         def cache_path
-          @cache_path ||= begin
-            environment.cache_path.join("source/puppet/githubtarball/#{uri.host}#{uri.path}")
-          end
+          @cache_path ||= environment.cache_path.join("source/puppet/githubtarball/#{uri.host}#{uri.path}")
         end
 
         def install_path(name)
@@ -110,7 +105,7 @@ module Librarian
           end
         end
 
-        def fetch_dependencies(name, version, version_uri)
+        def fetch_dependencies(_name, _version, _version_uri)
           {}
         end
 
@@ -118,7 +113,7 @@ module Librarian
           repo(name).manifests
         end
 
-      private
+        private
 
         def repo(name)
           @repo ||= {}

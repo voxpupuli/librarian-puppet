@@ -11,12 +11,15 @@ module Librarian
 
           debug { "Installing #{manifest}" }
 
-          name, version = manifest.name, manifest.version
+          name = manifest.name
+          _ = manifest.version
           found_path = found_path(name)
           raise Error, "Path for #{name} doesn't contain a puppet module" if found_path.nil?
 
           unless name.include? '/' or name.include? '-'
-            warn { "Invalid module name '#{name}', you should qualify it with 'ORGANIZATION-#{name}' for resolution to work correctly" }
+            warn do
+              "Invalid module name '#{name}', you should qualify it with 'ORGANIZATION-#{name}' for resolution to work correctly"
+            end
           end
 
           install_path = environment.install_path.join(module_name(name))
@@ -28,13 +31,13 @@ module Librarian
           install_perform_step_copy!(found_path, install_path)
         end
 
-        def fetch_version(name, extra)
+        def fetch_version(name, _extra)
           cache!
-          found_path = found_path(name)
+          found_path(name)
           module_version
         end
 
-        def fetch_dependencies(name, version, extra)
+        def fetch_dependencies(name, _version, _extra)
           dependencies = Set.new
 
           if specfile?
@@ -62,7 +65,7 @@ module Librarian
           if parsed_metadata['version']
             parsed_metadata['version']
           else
-            warn { "Module #{to_s} does not have version, defaulting to 0.0.1" }
+            warn { "Module #{self} does not have version, defaulting to 0.0.1" }
             '0.0.1'
           end
         end
@@ -70,14 +73,14 @@ module Librarian
         def parsed_metadata
           if @metadata.nil?
             @metadata = if metadata?
-              begin
-                JSON.parse(File.read(metadata))
-              rescue JSON::ParserError => e
-                raise Error, "Unable to parse json file #{metadata}: #{e}"
-              end
-            else
-              {}
-            end
+                          begin
+                            JSON.parse(File.read(metadata))
+                          rescue JSON::ParserError => e
+                            raise Error, "Unable to parse json file #{metadata}: #{e}"
+                          end
+                        else
+                          {}
+                        end
             @metadata['dependencies'] ||= []
           end
           @metadata
@@ -104,10 +107,11 @@ module Librarian
           cp_r(found_path, install_path)
         end
 
-        def manifest?(name, path)
+        def manifest?(_name, path)
           return true if path.join('manifests').exist?
           return true if path.join('lib').join('puppet').exist?
           return true if path.join('lib').join('facter').exist?
+
           debug { "Could not find manifests, lib/puppet or lib/facter under #{path}, maybe it is not a puppet module" }
           true
         end
