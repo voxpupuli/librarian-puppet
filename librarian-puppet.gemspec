@@ -1,4 +1,6 @@
-$:.push File.expand_path("../lib", __FILE__)
+# frozen_string_literal: true
+
+$:.push File.expand_path('lib', __dir__)
 
 require 'librarian/puppet/version'
 
@@ -25,17 +27,18 @@ Gem::Specification.new do |s|
 
   s.executables = ['librarian-puppet']
 
-  s.add_dependency "librarianp", ">=0.6.3"
-  s.add_dependency "rsync"
-  s.add_dependency "puppet_forge", ">= 2", '< 7'
+  s.add_dependency 'librarianp', '>=0.6.3'
+  s.add_dependency 'puppet_forge', '>= 2', '< 7'
+  s.add_dependency 'rsync'
 
-  s.add_development_dependency "rake"
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "cucumber", '~> 9.2'
-  s.add_development_dependency "aruba", ">= 1.0", "< 3"
-  s.add_development_dependency "puppet", ENV["PUPPET_VERSION"]
-  s.add_development_dependency "minitest", "~> 5"
-  s.add_development_dependency "mocha", '~> 2.7'
-  s.add_development_dependency "simplecov", ">= 0.9.0"
-  s.add_development_dependency "concurrent-ruby", '~> 1.3'
+  s.add_development_dependency 'aruba', '>= 1.0', '< 3'
+  s.add_development_dependency 'concurrent-ruby', '~> 1.3'
+  s.add_development_dependency 'cucumber', '~> 9.2'
+  s.add_development_dependency 'minitest', '~> 5'
+  s.add_development_dependency 'mocha', '~> 2.7'
+  s.add_development_dependency 'puppet', ENV.fetch('PUPPET_VERSION', nil)
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'simplecov', '>= 0.9.0'
+  s.add_development_dependency 'voxpupuli-rubocop', '~> 3.0.0'
 end

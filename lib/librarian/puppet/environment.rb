@@ -1,14 +1,15 @@
-require "librarian/environment"
-require "librarian/puppet/dsl"
-require "librarian/puppet/source"
-require "librarian/puppet/lockfile"
+# frozen_string_literal: true
+
+require 'librarian/environment'
+require 'librarian/puppet/dsl'
+require 'librarian/puppet/source'
+require 'librarian/puppet/lockfile'
 
 module Librarian
   module Puppet
     class Environment < Librarian::Environment
-
       def adapter_name
-        "puppet"
+        'puppet'
       end
 
       def lockfile
@@ -20,12 +21,12 @@ module Librarian
       end
 
       def tmp_path
-        part = config_db["tmp"] || ".tmp"
+        part = config_db['tmp'] || '.tmp'
         project_path.join(part)
       end
 
       def install_path
-        part = config_db["path"] || "modules"
+        part = config_db['path'] || 'modules'
         project_path.join(part)
       end
 

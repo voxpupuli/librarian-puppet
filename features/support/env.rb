@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aruba/cucumber'
 require 'fileutils'
 
@@ -6,17 +8,17 @@ Before do
 end
 
 Before('@spaces') do
-  @dirs = ["tmp/aruba with spaces"]
-  @dirs.each {|dir| FileUtils.rm_rf dir}
+  @dirs = ['tmp/aruba with spaces']
+  @dirs.each { |dir| FileUtils.rm_rf dir }
 end
 
-Given /^PENDING/ do
+Given(/^PENDING/) do
   pending
 end
 
 Given(/^there is no Puppetfile$/) do
   in_current_directory do
-    fail "Puppetfile exists at #{File.expand_path('Puppetfile')}" if (File.exist?('Puppetfile'))
+    raise "Puppetfile exists at #{File.expand_path('Puppetfile')}" if File.exist?('Puppetfile')
   end
 end
 

@@ -1,1 +1,3 @@
-mod 'librarian/test', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/test'
+# frozen_string_literal: true
+
+mod 'librarian/test', git: 'https://github.com/voxpupuli/librarian-puppet.git', path: 'features/examples/test'

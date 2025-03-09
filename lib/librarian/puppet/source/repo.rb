@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 # parent class for githubtarball and forge source Repos
 module Librarian
   module Puppet
     module Source
       class Repo
-
         attr_accessor :source, :name
         private :source=, :name=
 
@@ -31,7 +32,6 @@ module Librarian
         def vendored_path(name, version)
           environment.vendor_cache.join("#{name}-#{version}.tar.gz")
         end
-
       end
     end
   end

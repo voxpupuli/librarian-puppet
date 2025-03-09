@@ -17,7 +17,7 @@ Rake::TestTask.new do |test|
   test.verbose = true
 end
 
-task default: [:test, :spec, :features]
+task default: %i[test spec features]
 
 desc 'Bump version to the next minor'
 task :bump do
@@ -46,4 +46,10 @@ else
     gem_version = Gem::Specification.load("#{config.project}.gemspec").version
     config.future_release = "v#{gem_version}"
   end
+end
+
+begin
+  require 'voxpupuli/rubocop/rake'
+rescue LoadError
+  # the voxpupuli-rubocop gem is optional
 end

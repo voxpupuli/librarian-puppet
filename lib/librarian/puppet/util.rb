@@ -1,22 +1,24 @@
+# frozen_string_literal: true
+
 require 'rsync'
 
 module Librarian
   module Puppet
-
     module Util
+      def debug(...)
+        environment.logger.debug(...)
+      end
 
-      def debug(*args, &block)
-        environment.logger.debug(*args, &block)
+      def info(...)
+        environment.logger.info(...)
       end
-      def info(*args, &block)
-        environment.logger.info(*args, &block)
-      end
-      def warn(*args, &block)
-        environment.logger.warn(*args, &block)
+
+      def warn(...)
+        environment.logger.warn(...)
       end
 
       def rsync?
-          environment.config_db.local['rsync'] == 'true'
+        environment.config_db.local['rsync'] == 'true'
       end
 
       # workaround Issue #173 FileUtils.cp_r will fail if there is a symlink that points to a missing file
@@ -27,14 +29,14 @@ module Librarian
       def cp_r(src, dest)
         if rsync?
           if Gem.win_platform?
-            src_clean = "#{src}".gsub(/^([a-z])\:/i,'/cygdrive/\1')
-            dest_clean = "#{dest}".gsub(/^([a-z])\:/i,'/cygdrive/\1')
+            src_clean = "#{src}".gsub(/^([a-z]):/i, '/cygdrive/\1')
+            dest_clean = "#{dest}".gsub(/^([a-z]):/i, '/cygdrive/\1')
           else
             src_clean = src
             dest_clean = dest
           end
           debug { "Copying #{src_clean}/ to #{dest_clean}/ with rsync -avz --delete" }
-          result = Rsync.run(File.join(src_clean, "/"), File.join(dest_clean, "/"), ['-avz', '--delete'])
+          result = Rsync.run(File.join(src_clean, '/'), File.join(dest_clean, '/'), ['-avz', '--delete'])
           if result.success?
             debug { "Rsync from #{src_clean}/ to #{dest_clean}/ successful" }
           else
@@ -43,9 +45,11 @@ module Librarian
           end
         else
           begin
-            FileUtils.cp_r(src, dest, :preserve => true)
+            FileUtils.cp_r(src, dest, preserve: true)
           rescue Errno::ENOENT, Errno::EACCES
-            debug { "Failed to copy from #{src} to #{dest} preserving file types, trying again without preserving them" }
+            debug do
+              "Failed to copy from #{src} to #{dest} preserving file types, trying again without preserving them"
+            end
             FileUtils.rm_rf(dest)
             FileUtils.cp_r(src, dest)
           end
@@ -62,7 +66,7 @@ module Librarian
 
       # normalize module name to use organization-module instead of organization/module
       def normalize_name(name)
-        name.sub('/','-')
+        name.sub('/', '-')
       end
 
       # get the module name from organization-module

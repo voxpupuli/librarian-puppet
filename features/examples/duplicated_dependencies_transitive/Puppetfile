@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 forge 'https://forgeapi.puppet.com'
 
 metadata
 
-mod 'librarian-duplicated_dependencies', :git => 'https://github.com/voxpupuli/librarian-puppet.git', :path => 'features/examples/duplicated_dependencies'
+mod 'librarian-duplicated_dependencies', git: 'https://github.com/voxpupuli/librarian-puppet.git',
+                                         path: 'features/examples/duplicated_dependencies'

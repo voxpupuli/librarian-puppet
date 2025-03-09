@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'librarian/action/install'
 
 module Librarian
   module Puppet
     module Action
       class Install < Librarian::Action::Install
-
         private
 
         def create_install_path
@@ -19,7 +20,6 @@ module Librarian
         def check_specfile
           # don't fail if Puppetfile doesn't exist as we'll use metadata.json
         end
-
       end
     end
   end

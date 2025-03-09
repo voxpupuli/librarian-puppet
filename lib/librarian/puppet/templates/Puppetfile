@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
-#^syntax detection
+# frozen_string_literal: true
 
-forge "https://forgeapi.puppet.com"
+# ^syntax detection
+
+forge 'https://forgeapi.puppet.com'
 
 # use dependencies defined in metadata.json
 metadata
