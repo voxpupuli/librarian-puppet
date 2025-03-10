@@ -27,18 +27,18 @@ Gem::Specification.new do |s|
 
   s.executables = ['librarian-puppet']
 
-  s.add_dependency 'librarianp', '>=0.6.3'
+  s.add_dependency 'librarianp', '~> 1.1'
   s.add_dependency 'puppet_forge', '>= 2', '< 7'
-  s.add_dependency 'rsync'
+  s.add_dependency 'rsync', '~> 1.0'
 
   s.add_development_dependency 'aruba', '>= 1.0', '< 3'
   s.add_development_dependency 'concurrent-ruby', '~> 1.3'
   s.add_development_dependency 'cucumber', '~> 9.2'
   s.add_development_dependency 'minitest', '~> 5'
   s.add_development_dependency 'mocha', '~> 2.7'
-  s.add_development_dependency 'puppet', ENV.fetch('PUPPET_VERSION', nil)
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'simplecov', '>= 0.9.0'
+  s.add_development_dependency 'puppet', '>= 7', '< 9'
+  s.add_development_dependency 'rake', '~> 13.2'
+  s.add_development_dependency 'rspec', '~> 3.13'
+  s.add_development_dependency 'simplecov', '~> 0.22.0'
   s.add_development_dependency 'voxpupuli-rubocop', '~> 3.0.0'
 end
