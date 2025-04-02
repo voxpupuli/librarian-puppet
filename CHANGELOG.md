@@ -1,5 +1,25 @@
 # Changelog
 
+## [v6.0.0](https://github.com/voxpupuli/librarian-puppet/tree/v6.0.0) (2025-04-02)
+
+[Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v5.1.0...v6.0.0)
+
+**Breaking changes:**
+
+- Drop EoL Puppet 6 testing [\#132](https://github.com/voxpupuli/librarian-puppet/pull/132) ([bastelfreak](https://github.com/bastelfreak))
+
+**Fixed bugs:**
+
+- Fix missing action when installing with --strip-dot-git [\#127](https://github.com/voxpupuli/librarian-puppet/pull/127) ([melck](https://github.com/melck))
+
+**Merged pull requests:**
+
+- add voxpupuli-rubocop [\#138](https://github.com/voxpupuli/librarian-puppet/pull/138) ([bastelfreak](https://github.com/bastelfreak))
+- Fix minor RuboCop issues in Rakefile [\#137](https://github.com/voxpupuli/librarian-puppet/pull/137) ([bastelfreak](https://github.com/bastelfreak))
+- gemspec: Add strict dependency versions & CI: Build gem with --strict [\#136](https://github.com/voxpupuli/librarian-puppet/pull/136) ([bastelfreak](https://github.com/bastelfreak))
+- concurrent-ruby: Require 1.x [\#134](https://github.com/voxpupuli/librarian-puppet/pull/134) ([bastelfreak](https://github.com/bastelfreak))
+- cucumber: Require 9.x [\#133](https://github.com/voxpupuli/librarian-puppet/pull/133) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v5.1.0](https://github.com/voxpupuli/librarian-puppet/tree/v5.1.0) (2025-03-07)
 
 [Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v5.0.0...v5.1.0)
@@ -14,6 +34,7 @@
 
 **Merged pull requests:**
 
+- Add ephemeral test files to .gitignore [\#130](https://github.com/voxpupuli/librarian-puppet/pull/130) ([bastelfreak](https://github.com/bastelfreak))
 - GCG: Add faraday-retry dep [\#115](https://github.com/voxpupuli/librarian-puppet/pull/115) ([bastelfreak](https://github.com/bastelfreak))
 - CI: Exclude release gem group [\#114](https://github.com/voxpupuli/librarian-puppet/pull/114) ([bastelfreak](https://github.com/bastelfreak))
 
