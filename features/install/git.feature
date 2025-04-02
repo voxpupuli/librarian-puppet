@@ -153,3 +153,13 @@ Feature: cli/install/git
     """
     When I successfully run `librarian-puppet install`
     And the output should contain "Dependency 'puppetlabs-stdlib' duplicated for module, merging"
+
+  Scenario: Installing a module from git with the --strip-dot-git flag
+    Given a file named "Puppetfile" with:
+    """
+    mod 'puppetlabs-stdlib',
+      :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git',
+      :ref => 'main'
+    """
+    When I successfully run `librarian-puppet install --strip-dot-git` for up to 60 seconds
+    And a directory named "modules/stdlib/.git" should not exist

@@ -37,6 +37,10 @@ module Librarian
             raise Error, "Could not checkout #{uri}#{" at #{sha}" unless sha.nil?}: #{e}"
           end
 
+          if strip_dot_git? and repository.git?
+            repository.path.join('.git').rmtree
+          end
+
           cache_in_vendor(repository.path) if environment.vendor?
         end
 
@@ -52,6 +56,10 @@ module Librarian
 
         def vendor_cached?
           vendor_tgz.exist?
+        end
+
+        def strip_dot_git?
+          environment.config_db.local["install.strip-dot-git"] == '1'
         end
 
         def vendor_checkout!
