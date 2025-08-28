@@ -1,3 +1,4 @@
+---
 name: Test
 
 on:
@@ -9,19 +10,30 @@ on:
 permissions:
   contents: read
 
-env:
-  BUNDLE_WITHOUT: release
-
 jobs:
+  rubocop_and_matrix:
+    runs-on: ubuntu-24.04
+    outputs:
+      ruby: ${{ steps.ruby.outputs.versions }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+      - name: Run Rubocop
+        run: bundle exec rake rubocop
+      - id: ruby
+        uses: voxpupuli/ruby-version@v1
+
   test:
+    needs: rubocop_and_matrix
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        ruby:
-          - "3.2"
-          - "3.3"
-          - "3.4"
+        ruby: ${{ fromJSON(needs.rubocop_and_matrix.outputs.ruby) }}
         openvox:
           - "8"
     name: Ruby ${{ matrix.ruby }} + OpenVox ${{ matrix.openvox }}
@@ -43,6 +55,7 @@ jobs:
   tests:
     if: always()
     needs:
+      - rubocop_and_matrix
       - test
     runs-on: ubuntu-24.04
     name: Test suite
