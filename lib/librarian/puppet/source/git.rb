@@ -59,7 +59,7 @@ module Librarian
         end
 
         def strip_dot_git?
-          environment.config_db.local["install.strip-dot-git"] == '1'
+          environment.config_db.local['install.strip-dot-git'] == '1'
         end
 
         def vendor_checkout!

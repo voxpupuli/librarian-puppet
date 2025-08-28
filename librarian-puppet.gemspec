@@ -40,5 +40,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '~> 13.2'
   s.add_development_dependency 'rspec', '~> 3.13'
   s.add_development_dependency 'simplecov', '~> 0.22.0'
-  s.add_development_dependency 'voxpupuli-rubocop', '~> 3.0.0'
+  s.add_development_dependency 'voxpupuli-rubocop', '~> 4.2.0'
 end
