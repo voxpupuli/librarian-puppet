@@ -22,6 +22,7 @@ module Librarian
           # when looking up in manifests_index normalize the name beforehand
           class << manifests_index
             include Librarian::Puppet::Util
+
             alias_method :old_lookup, :[]
             define_method(:[]) { |k| old_lookup(normalize_name(k)) }
           end

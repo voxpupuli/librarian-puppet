@@ -38,6 +38,7 @@ describe Librarian::Puppet::Source::GitHubTarball::Repo do
     it 'succeeds' do
       response = []
       repo.expects(:http_get).with(url, { headers: headers }).returns(FakeResponse.new(200, JSON.dump(response)))
+
       _(repo.send(:api_call, '/foo')).must_equal(response)
     end
 
@@ -46,6 +47,7 @@ describe Librarian::Puppet::Source::GitHubTarball::Repo do
       response = []
       repo.expects(:http_get).with(url_with_token,
                                    { headers: headers }).returns(FakeResponse.new(200, JSON.dump(response)))
+
       _(repo.send(:api_call, '/foo')).must_equal(response)
       ENV['GITHUB_API_TOKEN'] = ''
     end
