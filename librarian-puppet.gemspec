@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'cucumber', '~> 9.2'
   s.add_development_dependency 'minitest', '~> 5'
   s.add_development_dependency 'mocha', '~> 2.7'
-  s.add_development_dependency 'puppet', '>= 7', '< 9'
+  s.add_development_dependency 'openvox', '~> 8.22'
   s.add_development_dependency 'rake', '~> 13.2'
   s.add_development_dependency 'rspec', '~> 3.13'
   s.add_development_dependency 'simplecov', '~> 0.22.0'

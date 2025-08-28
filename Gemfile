@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 # mention puppet here and in the gemspec, so we can provide a specific version in CI
 
-gem 'puppet', ENV.fetch('PUPPET_VERSION', ['>= 7', '< 9'])
+gem 'openvox', ENV.fetch('OPENVOX_VERSION', ['>= 8.22', '< 9'])
 
 gemspec
 
