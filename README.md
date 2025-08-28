@@ -36,6 +36,10 @@ and isolate a project's dependencies.
 
 ## Versions
 
+Librarian-Puppet 7 requires Ruby >= 3.2 and OpenVox 8.
+
+Librarian-Puppet 6 requires Ruby >= 2.7 and Puppet 7 or 8.
+
 Librarian-Puppet 5.0.0 and newer requires Ruby >= 2.7 and Puppet >= 6. Use version 4.0.1 if you need support for Puppet 6 or Ruby 2.6 or earlier.
 
 Librarian-Puppet 4.0.0 and newer requires Ruby >= 2.5 and Puppet >= 5. Use version 3.0.1 is you need support for Puppet 3 or Puppet 4, or Ruby 2.4 or earlier.
