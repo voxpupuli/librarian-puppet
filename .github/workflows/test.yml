@@ -20,12 +20,11 @@ jobs:
       matrix:
         ruby:
           - "3.2"
-        puppet:
+        openvox:
           - "8"
-          - "7"
-    name: Ruby ${{ matrix.ruby }} + Puppet ${{ matrix.puppet }}
+    name: Ruby ${{ matrix.ruby }} + OpenVox ${{ matrix.openvox }}
     env:
-      PUPPET_VERSION: "~> ${{ matrix.puppet }}.0"
+      OPENVOX_VERSION: "~> ${{ matrix.openvox }}.0"
     steps:
       - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
