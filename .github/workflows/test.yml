@@ -1,3 +1,4 @@
+---
 name: Test
 
 on:
@@ -54,7 +55,7 @@ jobs:
   tests:
     if: always()
     needs:
-      - rubocop
+      - rubocop_and_matrix
       - test
     runs-on: ubuntu-24.04
     name: Test suite
