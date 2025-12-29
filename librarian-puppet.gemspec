@@ -8,16 +8,16 @@ Gem::Specification.new do |s|
   s.name = 'librarian-puppet'
   s.version = Librarian::Puppet::VERSION
   s.platform = Gem::Platform::RUBY
-  s.authors = ['Tim Sharpe', 'Carlos Sanchez']
+  s.authors = ['Tim Sharpe', 'Carlos Sanchez', 'Vox Pupuli']
   s.license = 'MIT'
-  s.email = ['tim@sharpe.id.au', 'carlos@apache.org']
+  s.email = ['tim@sharpe.id.au', 'carlos@apache.org', 'voxpupuli@groups.io']
   s.homepage = 'https://github.com/voxpupuli/librarian-puppet'
   s.summary = 'Bundler for your Puppet modules'
   s.description = 'Simplify deployment of your Puppet infrastructure by
   automatically pulling in modules from the forge and git repositories with
   a single command.'
 
-  s.required_ruby_version = '>= 3.2', '< 4'
+  s.required_ruby_version = '>= 3.2', '< 5'
 
   s.files = [
     '.gitignore',
