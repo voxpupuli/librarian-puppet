@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'concurrent-ruby', '~> 1.3'
   s.add_development_dependency 'cucumber', '~> 9.2'
   s.add_development_dependency 'minitest', '~> 5'
-  s.add_development_dependency 'mocha', '~> 2.7'
+  s.add_development_dependency 'mocha', '>= 2.7', '< 4'
   s.add_development_dependency 'openvox', '~> 8.22'
   s.add_development_dependency 'rake', '~> 13.2'
   s.add_development_dependency 'rspec', '~> 3.13'
