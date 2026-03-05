@@ -1,5 +1,18 @@
 # Changelog
 
+## [v7.0.0](https://github.com/voxpupuli/librarian-puppet/tree/v7.0.0) (2026-03-05)
+
+[Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v6.0.0...v7.0.0)
+
+**Breaking changes:**
+
+- Require Ruby 3.2 or newer [\#141](https://github.com/voxpupuli/librarian-puppet/pull/141) ([bastelfreak](https://github.com/bastelfreak))
+- Add Ruby 3.3 & 3.4 to CI & Replace puppet with openvox [\#135](https://github.com/voxpupuli/librarian-puppet/pull/135) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add Ruby 4.0 support and add Vox Pupuli to gemspec [\#152](https://github.com/voxpupuli/librarian-puppet/pull/152) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v6.0.0](https://github.com/voxpupuli/librarian-puppet/tree/v6.0.0) (2025-04-02)
 
 [Full Changelog](https://github.com/voxpupuli/librarian-puppet/compare/v5.1.0...v6.0.0)
